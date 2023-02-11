@@ -11,6 +11,8 @@
 		017ADF5D2998323100A4537E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5C2998323100A4537E /* Assets.xcassets */; };
 		017ADF602998323100A4537E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5F2998323100A4537E /* Preview Assets.xcassets */; };
 		017ADF702998335100A4537E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF6F2998335100A4537E /* HomeView.swift */; };
+		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
+		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		017ADF5C2998323100A4537E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017ADF5F2998323100A4537E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		017ADF6F2998335100A4537E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
+		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		017ADF6A299832F300A4537E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				017ADF732998352B00A4537E /* LocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -102,8 +107,8 @@
 		017ADF6C299832F600A4537E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				017ADF6E2998333B00A4537E /* ViewModel */,
-				017ADF6D2998333A00A4537E /* Views */,
+				017ADF7629983C7500A4537E /* LocationSearch */,
+				017ADF7529983C6F00A4537E /* Home */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -112,11 +117,44 @@
 			isa = PBXGroup;
 			children = (
 				017ADF6F2998335100A4537E /* HomeView.swift */,
+				017ADF71299833F700A4537E /* MapViewRepresentable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 		017ADF6E2998333B00A4537E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		017ADF7529983C6F00A4537E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				017ADF6E2998333B00A4537E /* ViewModel */,
+				017ADF6D2998333A00A4537E /* Views */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		017ADF7629983C7500A4537E /* LocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+				017ADF7829983C9400A4537E /* ViewModel */,
+				017ADF7729983C9200A4537E /* Views */,
+			);
+			path = LocationSearch;
+			sourceTree = "<group>";
+		};
+		017ADF7729983C9200A4537E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		017ADF7829983C9400A4537E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -193,7 +231,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
+				017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */,
 				017ADF702998335100A4537E /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +366,7 @@
 				DEVELOPMENT_TEAM = WLZM42YW4X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location to provide nearby transit routes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -355,6 +396,7 @@
 				DEVELOPMENT_TEAM = WLZM42YW4X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location to provide nearby transit routes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
