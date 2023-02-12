@@ -13,6 +13,7 @@
 		017ADF702998335100A4537E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF6F2998335100A4537E /* HomeView.swift */; };
 		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
 		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
+		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		017ADF6F2998335100A4537E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		017ADF7729983C9200A4537E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				017ADF7929987CB700A4537E /* LocationSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */,
