@@ -121,10 +121,6 @@ struct ColorButtonOutlineCalendar: View, Animatable {
         ZStack {
             image
                 .offset(x: offset(maxValue: 5))
-            Circle()
-                .frame(width: 3)
-                .offset(x: 3, y: 4)
-                .offset(x: offset(maxValue: 8))
         }
     }
 

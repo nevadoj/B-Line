@@ -19,7 +19,7 @@ struct LocationSearchView: View {
         .frame(width: UIScreen.main.bounds.width - 64, height: 50)
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.white)
+                .fill(.white)
                 .opacity(0.7)
                 .shadow(color: .gray, radius: 5)
         )

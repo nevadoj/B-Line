@@ -15,26 +15,30 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(){
-//            Color.examplePurple.edgesIgnoringSafeArea(.all)
             switch selectedIndex{
+            case 0:
+                StopsView()
+                    .transition(.slide)
             case 1:
                 MapView()
+                    .transition(.slide)
             default:
                 StopsView()
+                    .transition(.slide)
             }
             VStack(){
                 Spacer()
                 AnimatedTabBar(selectedIndex: $selectedIndex) {
-                    colorButtonAt(0, type: .bell)
+                    colorButtonAt(0, type: .calendar)
                     colorButtonAt(1, type: .calendar)
-                    colorButtonAt(2, type: .gear)
                 }
+                .barColor(Color("BSecondary"))
                 .cornerRadius(16)
                 .selectedColor(.exampleGrey)
                 .unselectedColor(.exampleLightGrey)
-                .ballColor(.white)
-                .verticalPadding(20)
+                .verticalPadding(15)
                 .ballTrajectory(.straight)
+                .ballColor(Color("BSecondary"))
                 .ballAnimation(.interpolatingSpring(stiffness: 130, damping: 15))
                 .indentAnimation(.easeOut(duration: 0.3))
             }
@@ -49,7 +53,7 @@ struct HomeView: View {
     func colorButtonAt(_ index: Int, type: ColorButton.AnimationType) -> some View {
         ColorButton(
             image: Image("colorTab\(index+1)"),
-            colorImage: Image("colorTab3Bg"),
+            colorImage: Image("Blank"),
             isSelected: selectedIndex == index,
             fromLeft: prevSelectedIndex < index,
             toLeft: selectedIndex < index,

@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct StopsView: View {
+    
+    init(){
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = appearance
+    }
+    
     var body: some View {
-        ZStack {
-            Color.gray.ignoresSafeArea()
-            Text("Hello World!")
-                .font(.title)
+        NavigationView{
+            ZStack {
+                Color("BPrimary").ignoresSafeArea()
+                Text("Hello World!")
+                    .foregroundColor(.white)
+            }
+            .navigationTitle("Stops")
         }
     }
 }
