@@ -14,6 +14,11 @@
 		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
 		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
 		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
+		01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBB8299C4E560062E4F2 /* StopsView.swift */; };
+		01E3FBBC299C4E840062E4F2 /* AnimatedTabBar in Frameworks */ = {isa = PBXBuildFile; productRef = 01E3FBBB299C4E840062E4F2 /* AnimatedTabBar */; };
+		01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBBD299C4EB30062E4F2 /* MapView.swift */; };
+		01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */; };
+		01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBC1299C53660062E4F2 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,11 @@
 		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
+		01E3FBB8299C4E560062E4F2 /* StopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsView.swift; sourceTree = "<group>"; };
+		01E3FBBD299C4EB30062E4F2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
+		01E3FBC1299C53660062E4F2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		01E3FBC3299C5CEF0062E4F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E3FBBC299C4E840062E4F2 /* AnimatedTabBar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +68,7 @@
 		017ADF572998323000A4537E /* B-Line */ = {
 			isa = PBXGroup;
 			children = (
+				01E3FBC3299C5CEF0062E4F2 /* Info.plist */,
 				017ADF66299832E000A4537E /* App */,
 				017ADF6C299832F600A4537E /* Core */,
 				017ADF6B299832F400A4537E /* Extensions */,
@@ -102,6 +114,8 @@
 		017ADF6B299832F400A4537E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */,
+				01E3FBC1299C53660062E4F2 /* Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -120,6 +134,8 @@
 			children = (
 				017ADF6F2998335100A4537E /* HomeView.swift */,
 				017ADF71299833F700A4537E /* MapViewRepresentable.swift */,
+				01E3FBB8299C4E560062E4F2 /* StopsView.swift */,
+				01E3FBBD299C4EB30062E4F2 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +196,9 @@
 			dependencies = (
 			);
 			name = "B-Line";
+			packageProductDependencies = (
+				01E3FBBB299C4E840062E4F2 /* AnimatedTabBar */,
+			);
 			productName = "B-Line";
 			productReference = 017ADF552998323000A4537E /* B-Line.app */;
 			productType = "com.apple.product-type.application";
@@ -208,6 +227,9 @@
 				Base,
 			);
 			mainGroup = 017ADF4C2998323000A4537E;
+			packageReferences = (
+				01E3FBBA299C4E840062E4F2 /* XCRemoteSwiftPackageReference "AnimatedTabBar" */,
+			);
 			productRefGroup = 017ADF562998323000A4537E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,8 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
+				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
+				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
+				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */,
 				017ADF702998335100A4537E /* HomeView.swift in Sources */,
@@ -370,6 +396,7 @@
 				DEVELOPMENT_TEAM = WLZM42YW4X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "B-Line/Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location to provide nearby transit routes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -400,6 +427,7 @@
 				DEVELOPMENT_TEAM = WLZM42YW4X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "B-Line/Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location to provide nearby transit routes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -441,6 +469,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01E3FBBA299C4E840062E4F2 /* XCRemoteSwiftPackageReference "AnimatedTabBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/AnimatedTabBar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01E3FBBB299C4E840062E4F2 /* AnimatedTabBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01E3FBBA299C4E840062E4F2 /* XCRemoteSwiftPackageReference "AnimatedTabBar" */;
+			productName = AnimatedTabBar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 017ADF4D2998323000A4537E /* Project object */;
 }
