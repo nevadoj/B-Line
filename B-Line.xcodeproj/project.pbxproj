@@ -14,6 +14,10 @@
 		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
 		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
 		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
+		018F7DF929A32A1F005D0E44 /* StopsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DF829A32A1F005D0E44 /* StopsModel.swift */; };
+		018F7DFC29A330F3005D0E44 /* TLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFB29A330F3005D0E44 /* TLService.swift */; };
+		018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFD29A330FD005D0E44 /* TLRequest.swift */; };
+		018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFF29A33103005D0E44 /* TLEndpoint.swift */; };
 		01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBB8299C4E560062E4F2 /* StopsView.swift */; };
 		01E3FBBC299C4E840062E4F2 /* AnimatedTabBar in Frameworks */ = {isa = PBXBuildFile; productRef = 01E3FBBB299C4E840062E4F2 /* AnimatedTabBar */; };
 		01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBBD299C4EB30062E4F2 /* MapView.swift */; };
@@ -30,6 +34,10 @@
 		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
+		018F7DF829A32A1F005D0E44 /* StopsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsModel.swift; sourceTree = "<group>"; };
+		018F7DFB29A330F3005D0E44 /* TLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLService.swift; sourceTree = "<group>"; };
+		018F7DFD29A330FD005D0E44 /* TLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLRequest.swift; sourceTree = "<group>"; };
+		018F7DFF29A33103005D0E44 /* TLEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLEndpoint.swift; sourceTree = "<group>"; };
 		01E3FBB8299C4E560062E4F2 /* StopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsView.swift; sourceTree = "<group>"; };
 		01E3FBBD299C4EB30062E4F2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
@@ -68,6 +76,7 @@
 		017ADF572998323000A4537E /* B-Line */ = {
 			isa = PBXGroup;
 			children = (
+				018F7DFA29A330DB005D0E44 /* APIClient */,
 				01E3FBC3299C5CEF0062E4F2 /* Info.plist */,
 				017ADF66299832E000A4537E /* App */,
 				017ADF6C299832F600A4537E /* Core */,
@@ -123,6 +132,7 @@
 		017ADF6C299832F600A4537E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				018F7DF529A321CC005D0E44 /* Stops */,
 				017ADF7629983C7500A4537E /* LocationSearch */,
 				017ADF7529983C6F00A4537E /* Home */,
 			);
@@ -134,7 +144,6 @@
 			children = (
 				017ADF6F2998335100A4537E /* HomeView.swift */,
 				017ADF71299833F700A4537E /* MapViewRepresentable.swift */,
-				01E3FBB8299C4E560062E4F2 /* StopsView.swift */,
 				01E3FBBD299C4EB30062E4F2 /* MapView.swift */,
 			);
 			path = Views;
@@ -178,6 +187,41 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		018F7DF529A321CC005D0E44 /* Stops */ = {
+			isa = PBXGroup;
+			children = (
+				018F7DF729A321D6005D0E44 /* ViewModel */,
+				018F7DF629A321D1005D0E44 /* Views */,
+			);
+			path = Stops;
+			sourceTree = "<group>";
+		};
+		018F7DF629A321D1005D0E44 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01E3FBB8299C4E560062E4F2 /* StopsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		018F7DF729A321D6005D0E44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				018F7DF829A32A1F005D0E44 /* StopsModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		018F7DFA29A330DB005D0E44 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				018F7DFB29A330F3005D0E44 /* TLService.swift */,
+				018F7DFD29A330FD005D0E44 /* TLRequest.swift */,
+				018F7DFF29A33103005D0E44 /* TLEndpoint.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,11 +303,15 @@
 				01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
+				018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */,
+				018F7DF929A32A1F005D0E44 /* StopsModel.swift in Sources */,
+				018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */,
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */,
+				018F7DFC29A330F3005D0E44 /* TLService.swift in Sources */,
 				017ADF702998335100A4537E /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
