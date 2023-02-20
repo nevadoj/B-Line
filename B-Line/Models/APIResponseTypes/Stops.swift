@@ -1,5 +1,5 @@
 //
-//  StopsModel.swift
+//  Stops.swift
 //  B-Line
 //
 //  Created by Joseph Nevado on 2023-02-19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stop: Codable{
+struct Stops: Codable{
     var StopNo: Int
     var Name: String
     var BayNo: Int

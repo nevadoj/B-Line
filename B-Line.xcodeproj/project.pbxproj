@@ -14,10 +14,14 @@
 		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
 		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
 		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
-		018F7DF929A32A1F005D0E44 /* StopsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DF829A32A1F005D0E44 /* StopsModel.swift */; };
+		018F7DF929A32A1F005D0E44 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DF829A32A1F005D0E44 /* Stops.swift */; };
 		018F7DFC29A330F3005D0E44 /* TLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFB29A330F3005D0E44 /* TLService.swift */; };
 		018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFD29A330FD005D0E44 /* TLRequest.swift */; };
 		018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFF29A33103005D0E44 /* TLEndpoint.swift */; };
+		018F7E0529A35DD8005D0E44 /* StopEstimates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0429A35DD8005D0E44 /* StopEstimates.swift */; };
+		018F7E0729A35DF5005D0E44 /* Buses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0629A35DF5005D0E44 /* Buses.swift */; };
+		018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0829A35DF9005D0E44 /* Routes.swift */; };
+		018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0A29A35DFE005D0E44 /* Stats.swift */; };
 		01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBB8299C4E560062E4F2 /* StopsView.swift */; };
 		01E3FBBC299C4E840062E4F2 /* AnimatedTabBar in Frameworks */ = {isa = PBXBuildFile; productRef = 01E3FBBB299C4E840062E4F2 /* AnimatedTabBar */; };
 		01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3FBBD299C4EB30062E4F2 /* MapView.swift */; };
@@ -34,10 +38,14 @@
 		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
-		018F7DF829A32A1F005D0E44 /* StopsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsModel.swift; sourceTree = "<group>"; };
+		018F7DF829A32A1F005D0E44 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
 		018F7DFB29A330F3005D0E44 /* TLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLService.swift; sourceTree = "<group>"; };
 		018F7DFD29A330FD005D0E44 /* TLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLRequest.swift; sourceTree = "<group>"; };
 		018F7DFF29A33103005D0E44 /* TLEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLEndpoint.swift; sourceTree = "<group>"; };
+		018F7E0429A35DD8005D0E44 /* StopEstimates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopEstimates.swift; sourceTree = "<group>"; };
+		018F7E0629A35DF5005D0E44 /* Buses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buses.swift; sourceTree = "<group>"; };
+		018F7E0829A35DF9005D0E44 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		018F7E0A29A35DFE005D0E44 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		01E3FBB8299C4E560062E4F2 /* StopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsView.swift; sourceTree = "<group>"; };
 		01E3FBBD299C4EB30062E4F2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
@@ -108,6 +116,7 @@
 		017ADF68299832EB00A4537E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,7 +218,6 @@
 		018F7DF729A321D6005D0E44 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				018F7DF829A32A1F005D0E44 /* StopsModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +230,18 @@
 				018F7DFF29A33103005D0E44 /* TLEndpoint.swift */,
 			);
 			path = APIClient;
+			sourceTree = "<group>";
+		};
+		018F7E0129A35D61005D0E44 /* APIResponseTypes */ = {
+			isa = PBXGroup;
+			children = (
+				018F7DF829A32A1F005D0E44 /* Stops.swift */,
+				018F7E0429A35DD8005D0E44 /* StopEstimates.swift */,
+				018F7E0629A35DF5005D0E44 /* Buses.swift */,
+				018F7E0829A35DF9005D0E44 /* Routes.swift */,
+				018F7E0A29A35DFE005D0E44 /* Stats.swift */,
+			);
+			path = APIResponseTypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,12 +321,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */,
+				018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
+				018F7E0529A35DD8005D0E44 /* StopEstimates.swift in Sources */,
 				018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */,
-				018F7DF929A32A1F005D0E44 /* StopsModel.swift in Sources */,
+				018F7DF929A32A1F005D0E44 /* Stops.swift in Sources */,
+				018F7E0729A35DF5005D0E44 /* Buses.swift in Sources */,
 				018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */,
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
+				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,

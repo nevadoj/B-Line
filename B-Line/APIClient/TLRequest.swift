@@ -8,18 +8,13 @@
 import Foundation
 
 final class TLRequest{
-    // Base url
-    // Endpoint
-    // Path components
-    // Query parameters
-    
     private struct Constants{
         static let baseUrl = "https://api.translink.ca/rttiapi/v1"
     }
     
     private let endpoint: TLEndpoint
     
-    private let pathComponents: Set<String>
+    private let pathComponents: [String]
     
     private let queryParameters: [URLQueryItem]
 
@@ -67,7 +62,7 @@ final class TLRequest{
      */
     public init(
         endpoint: TLEndpoint,
-        pathComponents: Set<String> = [],
+        pathComponents: [String] = [],
         queryParameters: [URLQueryItem] = []
     ){
         self.endpoint = endpoint
