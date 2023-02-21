@@ -72,3 +72,7 @@ final class TLRequest{
 
     // https://api.translink.ca/rttiapi/v1/stops/58946?apikey=RfDK2UbNILAEqn1ksoCV
 }
+
+extension TLRequest {
+    static let stopsRequest = TLRequest(endpoint: .stops)
+}

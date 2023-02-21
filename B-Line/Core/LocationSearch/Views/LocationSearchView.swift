@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct LocationSearchView: View {
+    
+    @StateObject var viewModel = LocationSearchViewModel()
+    @State private var searchText = ""
+    
     var body: some View {
         HStack{
-            
-            Text("Search")
+            TextField("Search", text: $viewModel.queryFragment)
                 .foregroundColor(.secondary)
                 .padding()
             Spacer()
