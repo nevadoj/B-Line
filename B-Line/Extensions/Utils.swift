@@ -24,3 +24,29 @@ extension Color {
     static var exampleLightGrey = Color(hex: "#B1B1B1")
     static var examplePurple = Color(hex: "7D26FE")
 }
+
+// from: https://medium.com/devtechie/dynamically-hiding-view-in-swiftui-e7960d79a681
+struct IsHidden: ViewModifier {
+    var hidden = false
+    var remove = false
+    func body(content: Content) -> some View {
+        if hidden {
+            if remove {
+                
+            } else {
+                content.hidden()
+            }
+        } else {
+            content
+        }
+    }
+}
+
+extension View {
+    func isHidden(hidden: Bool = false, remove: Bool = false) -> some View {
+        modifier(
+            IsHidden(
+                hidden: hidden,
+                remove: remove))
+    }
+}

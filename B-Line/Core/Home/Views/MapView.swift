@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MapView: View {
     
-    @State private var showSearchMenu = false
+//    @State private var showSearchMenu = false
+    @Binding var showSearchMenu: Bool
     
     var body: some View {
         ZStack(alignment: .top){
@@ -34,6 +35,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(showSearchMenu: .constant(false))
     }
 }

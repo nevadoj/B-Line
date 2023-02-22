@@ -13,13 +13,15 @@ struct HomeView: View {
     @State private var selectedIndex = 0
     @State private var prevSelectedIndex = 0
     
+    @State private var showSearchMenu = false
+    
     var body: some View {
         ZStack(){
             switch selectedIndex{
             case 0:
                 StopsView()
             case 1:
-                MapView()
+                MapView(showSearchMenu: $showSearchMenu)
             default:
                 StopsView()
             }
@@ -42,6 +44,7 @@ struct HomeView: View {
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .ignoresSafeArea(.keyboard)
+            .isHidden(hidden: showSearchMenu)
         }
         .onChange(of: selectedIndex) { [selectedIndex] _ in
             prevSelectedIndex = selectedIndex
