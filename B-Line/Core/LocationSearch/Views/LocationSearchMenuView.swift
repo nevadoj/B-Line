@@ -9,12 +9,12 @@ import SwiftUI
 
 struct LocationSearchMenuView: View {
     
-    @State var inputText = ""
+    @StateObject var viewModel = LocationSearchViewModel()
     
     var body: some View {
         VStack(alignment: .leading){
             HStack{
-                TextField("Search", text: $inputText)
+                TextField("Search", text: $viewModel.queryFragment)
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: UIScreen.main.bounds.width - 120, height: 50)
@@ -25,17 +25,31 @@ struct LocationSearchMenuView: View {
                             .shadow(color: Color("BSecondary"), radius: 5)
                     )
                     .padding(25)
-                
-//                PrimaryButton(imageName: "magnifyingglass") // switch image to 'X' with binding variable
-//                    .padding([.vertical, .trailing], 25)
                 Spacer()
             }
             
             ScrollView{
-                VStack{
-                    // show 'Search..' text with binding variable if TextField is empty
-                    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                        .padding()
+                VStack(alignment: .leading){
+                    if(viewModel.queryFragment.isEmpty){
+                        HStack{
+                            Text("Search..")
+                                .font(.title)
+                                .foregroundColor(Color(hex: "DCDCDC"))
+                                .fontWeight(.medium)
+                          .font(.title2)
+                        }
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 300)
+                    }
+                    else{
+                        ScrollView{
+                            VStack(alignment: .leading){
+                                ForEach(viewModel.results, id: \.self){ result in
+                                    LocationSearchResult(name: result.title, address: result.subtitle)
+                                    // on click of result, toggle back to map view and query translink api
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

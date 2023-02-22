@@ -18,13 +18,10 @@ struct HomeView: View {
             switch selectedIndex{
             case 0:
                 StopsView()
-                    .transition(.slide)
             case 1:
                 MapView()
-                    .transition(.slide)
             default:
                 StopsView()
-                    .transition(.slide)
             }
             VStack(){
                 Spacer()

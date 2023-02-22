@@ -14,11 +14,11 @@ struct LocationSearchView: View {
     
     var body: some View {
         Button{
-            withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
-                showSearchMenu.toggle()                
-            }
+            showSearchMenu.toggle()
         } label: {
-            PrimaryButton(imageName: showSearchMenu ? "xmark" : "magnifyingglass")
+            withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
+                PrimaryButton(imageName: showSearchMenu ? "xmark" : "magnifyingglass")
+            }
         }
     }
 }
