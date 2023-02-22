@@ -10,27 +10,21 @@ import SwiftUI
 struct LocationSearchView: View {
     
     @StateObject var viewModel = LocationSearchViewModel()
-    @State private var searchText = ""
+    @Binding var showSearchMenu: Bool
     
     var body: some View {
-        HStack{
-            TextField("Search", text: $viewModel.queryFragment)
-                .foregroundColor(.secondary)
-                .padding()
-            Spacer()
+        Button{
+            withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
+                showSearchMenu.toggle()                
+            }
+        } label: {
+            PrimaryButton(imageName: showSearchMenu ? "xmark" : "magnifyingglass")
         }
-        .frame(width: UIScreen.main.bounds.width - 64, height: 50)
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .fill(.white)
-                .opacity(0.7)
-                .shadow(color: .gray, radius: 5)
-        )
     }
 }
 
 struct LocationSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchView()
+        LocationSearchView(showSearchMenu: .constant(true))
     }
 }

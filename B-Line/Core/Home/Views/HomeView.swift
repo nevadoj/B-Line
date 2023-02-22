@@ -44,6 +44,7 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
+            .ignoresSafeArea(.keyboard)
         }
         .onChange(of: selectedIndex) { [selectedIndex] _ in
             prevSelectedIndex = selectedIndex
