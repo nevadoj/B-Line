@@ -20,7 +20,7 @@ struct MapView: View {
             }
             else{
                 withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
-                    LocationSearchMenuView()                    
+                    LocationSearchMenuView(showSearchMenu: $showSearchMenu)
                 }
             }
             

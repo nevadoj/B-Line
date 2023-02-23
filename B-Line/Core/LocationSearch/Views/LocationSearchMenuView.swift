@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LocationSearchMenuView: View {
     
-    @StateObject var viewModel = LocationSearchViewModel()
+    @EnvironmentObject var viewModel: LocationSearchViewModel
+    @Binding var showSearchMenu: Bool
     
     var body: some View {
         VStack(alignment: .leading){
@@ -45,6 +46,10 @@ struct LocationSearchMenuView: View {
                             VStack(alignment: .leading){
                                 ForEach(viewModel.results, id: \.self){ result in
                                     LocationSearchResult(name: result.title, address: result.subtitle)
+                                        .onTapGesture {
+                                            viewModel.selectLocation(result)
+                                            showSearchMenu.toggle()
+                                        }
                                     // on click of result, toggle back to map view and query translink api
                                 }
                             }
@@ -59,6 +64,6 @@ struct LocationSearchMenuView: View {
 
 struct LocationSearchMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchMenuView()
+        LocationSearchMenuView(showSearchMenu: .constant(true))
     }
 }
