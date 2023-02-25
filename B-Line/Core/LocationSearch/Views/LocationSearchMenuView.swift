@@ -11,6 +11,7 @@ struct LocationSearchMenuView: View {
     
     @EnvironmentObject var viewModel: LocationSearchViewModel
     @Binding var showSearchMenu: Bool
+    @Binding var defaultLocation: Bool
     
     var body: some View {
         VStack(alignment: .leading){
@@ -49,6 +50,10 @@ struct LocationSearchMenuView: View {
                                         .onTapGesture {
                                             viewModel.selectLocation(result)
                                             showSearchMenu.toggle()
+                                            
+                                            if(defaultLocation){
+                                                defaultLocation.toggle() // need a button to re-center location which will un-toggle this
+                                            }
                                         }
                                     // on click of result, toggle back to map view and query translink api
                                 }
@@ -64,6 +69,6 @@ struct LocationSearchMenuView: View {
 
 struct LocationSearchMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchMenuView(showSearchMenu: .constant(true))
+        LocationSearchMenuView(showSearchMenu: .constant(true), defaultLocation: .constant(true))
     }
 }
