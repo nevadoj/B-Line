@@ -8,9 +8,14 @@
 // Get the user's collection once, then handle updates with the map view
 
 import CoreLocation
+import MapKit
+import SwiftUI
 
 class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
+    @Published var region = MKCoordinateRegion()
+    
+    @Published var location: CLLocation?
     
     override init(){
         super.init()
@@ -19,11 +24,27 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard !locations.isEmpty else { return }
-        locationManager.stopUpdatingLocation()
+        DispatchQueue.main.async{
+            self.location = locations.last
+        }
+//        locationManager.stopUpdatingLocation()
+    }
+}
+
+extension MKCoordinateRegion {
+    static func defaultRegion() -> MKCoordinateRegion {
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    }
+    
+    func getBinding() -> Binding<MKCoordinateRegion>? {
+        return Binding<MKCoordinateRegion>(.constant(self))
     }
 }

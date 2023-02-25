@@ -17,34 +17,35 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(){
-            switch selectedIndex{
-            case 0:
-                StopsView()
-            case 1:
-                MapView(showSearchMenu: $showSearchMenu)
-            default:
-                StopsView()
-            }
-            VStack(){
-                Spacer()
-                AnimatedTabBar(selectedIndex: $selectedIndex) {
-                    colorButtonAt(0, type: .calendar)
-                    colorButtonAt(1, type: .calendar)
-                }
-                .barColor(Color("BSecondary"))
-                .cornerRadius(16)
-                .selectedColor(.exampleGrey)
-                .unselectedColor(.exampleLightGrey)
-                .verticalPadding(15)
-                .ballTrajectory(.straight)
-                .ballColor(Color("BSecondary"))
-                .ballAnimation(.interpolatingSpring(stiffness: 130, damping: 15))
-                .indentAnimation(.easeOut(duration: 0.3))
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal)
-            .ignoresSafeArea(.keyboard)
-            .isHidden(hidden: showSearchMenu)
+            MapViewSample()
+//            switch selectedIndex{
+//            case 0:
+//                StopsView()
+//            case 1:
+//                MapView(showSearchMenu: $showSearchMenu)
+//            default:
+//                StopsView()
+//            }
+//            VStack(){
+//                Spacer()
+//                AnimatedTabBar(selectedIndex: $selectedIndex) {
+//                    colorButtonAt(0, type: .calendar)
+//                    colorButtonAt(1, type: .calendar)
+//                }
+//                .barColor(Color("BSecondary"))
+//                .cornerRadius(16)
+//                .selectedColor(.exampleGrey)
+//                .unselectedColor(.exampleLightGrey)
+//                .verticalPadding(15)
+//                .ballTrajectory(.straight)
+//                .ballColor(Color("BSecondary"))
+//                .ballAnimation(.interpolatingSpring(stiffness: 130, damping: 15))
+//                .indentAnimation(.easeOut(duration: 0.3))
+//            }
+//            .frame(maxWidth: .infinity)
+//            .padding(.horizontal)
+//            .ignoresSafeArea(.keyboard)
+//            .isHidden(hidden: showSearchMenu)
         }
         .onChange(of: selectedIndex) { [selectedIndex] _ in
             prevSelectedIndex = selectedIndex
