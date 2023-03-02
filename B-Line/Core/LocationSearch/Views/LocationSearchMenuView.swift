@@ -68,7 +68,9 @@ struct LocationSearchMenuView: View {
 }
 
 struct LocationSearchMenuView_Previews: PreviewProvider {
+    static let viewModel = LocationSearchViewModel()
     static var previews: some View {
         LocationSearchMenuView(showSearchMenu: .constant(true), defaultLocation: .constant(true))
+            .environmentObject(viewModel)
     }
 }

@@ -16,9 +16,7 @@ struct MapView: View {
     var body: some View {
         ZStack(alignment: .top){
             if(!showSearchMenu){
-//                MapViewRepresentable()
-//                    .ignoresSafeArea()
-                MapViewSample(defaultLocation: $defaultLocation)
+                MapViewMain(defaultLocation: $defaultLocation)
                     .ignoresSafeArea()
             }
             else{

@@ -24,6 +24,17 @@ struct StopsView: View {
                     .foregroundColor(.white)
             }
             .navigationTitle("Stops")
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button{
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MapViewSample.swift
+//  MapViewMain.swift
 //  B-Line
 //
 //  Created by Joseph Nevado on 2023-02-23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct MapViewSample: View {
+struct MapViewMain: View {
     @StateObject private var locationManager = LocationManager()
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     
@@ -50,8 +50,8 @@ struct MapViewSample: View {
     }
 }
 
-struct MapViewSample_Previews: PreviewProvider {
+struct MapViewMain_Previews: PreviewProvider {
     static var previews: some View {
-        MapViewSample(defaultLocation: .constant(true))
+        MapViewMain(defaultLocation: .constant(true))
     }
 }
