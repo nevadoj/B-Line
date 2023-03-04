@@ -9,6 +9,9 @@ import SwiftUI
 
 struct StopsView: View {
     
+    @State var addStop = false
+    @StateObject private var viewModel = StopsViewModel()
+    
     init(){
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -27,14 +30,24 @@ struct StopsView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button{
-                        
+                        addStop.toggle()
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
                     }
+                    .sheet(isPresented: $addStop){
+                        NavigationView{
+                            AddStopView()
+                                .navigationTitle("Add Stop")
+                        }
+                        .presentationDetents([.medium])
+                    }
                 }
             }
+        }
+        .onAppear(){
+            viewModel.sampleFetch(stopID: "58946")
         }
     }
 }

@@ -26,7 +26,10 @@ struct LocationSearchMenuView: View {
                             .opacity(0.7)
                             .shadow(color: Color("BSecondary"), radius: 5)
                     )
-                    .padding(25)
+                    .padding(.horizontal, 25)
+                    .padding(.top, 42)
+                    .padding(.bottom, 25)
+                
                 Spacer()
             }
             

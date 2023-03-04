@@ -8,6 +8,7 @@
 import Foundation
 
 final class TLRequest{
+    
     private struct Constants{
         static let baseUrl = "https://api.translink.ca/rttiapi/v1"
     }
@@ -69,10 +70,26 @@ final class TLRequest{
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
+    
+    func stopRequest(_ stopID: String) -> TLRequest{
+        let request = TLRequest(
+            endpoint: .stops,
+            pathComponents: [stopID],
+            queryParameters: [
+                URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+            ])
+        
+        return request
+    }
 
     // https://api.translink.ca/rttiapi/v1/stops/58946?apikey=RfDK2UbNILAEqn1ksoCV
 }
 
 extension TLRequest {
-    static let stopsRequest = TLRequest(endpoint: .stops)
+    static let stopsRequest = TLRequest(
+        endpoint: .stops,
+        pathComponents: ["58946"],
+        queryParameters: [
+            URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+        ])
 }

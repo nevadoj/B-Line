@@ -10,7 +10,7 @@ import Foundation
 struct Stops: Codable{
     var StopNo: Int
     var Name: String
-    var BayNo: Int
+    var BayNo: String
     var City: String
     var OnStreet: String
     var AtStreet: String
