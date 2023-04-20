@@ -26,7 +26,7 @@ struct HomeView: View {
             default:
                 StopsView()
             }
-            VStack(){
+            VStack(){ // TODO: Create custom tab bar 
                 Spacer()
                 AnimatedTabBar(selectedIndex: $selectedIndex) {
                     colorButtonAt(0, type: .calendar)
@@ -41,14 +41,14 @@ struct HomeView: View {
                 .ballColor(Color("BSecondary"))
                 .ballAnimation(.interpolatingSpring(stiffness: 130, damping: 15))
                 .indentAnimation(.easeOut(duration: 0.3))
+                .isHidden(showSearchMenu)
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .ignoresSafeArea(.keyboard)
-            .isHidden(hidden: showSearchMenu)
         }
         .onChange(of: selectedIndex) { [selectedIndex] _ in
-            prevSelectedIndex = selectedIndex
+           prevSelectedIndex = selectedIndex
         }
     }
     

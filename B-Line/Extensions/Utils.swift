@@ -25,28 +25,29 @@ extension Color {
     static var examplePurple = Color(hex: "7D26FE")
 }
 
-// from: https://medium.com/devtechie/dynamically-hiding-view-in-swiftui-e7960d79a681
-struct IsHidden: ViewModifier {
-    var hidden = false
-    var remove = false
-    func body(content: Content) -> some View {
+extension View {
+    /// Hide or show the view based on a boolean value.
+    ///
+    /// Example for visibility:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true)
+    ///
+    /// Example for complete removal:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true, remove: true)
+    ///
+    /// - Parameters:
+    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
+    ///   - remove: Boolean value indicating whether or not to remove the view.
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
         if hidden {
-            if remove {
-                
-            } else {
-                content.hidden()
+            if !remove {
+                self.hidden()
             }
         } else {
-            content
+            self
         }
-    }
-}
-
-extension View {
-    func isHidden(hidden: Bool = false, remove: Bool = false) -> some View {
-        modifier(
-            IsHidden(
-                hidden: hidden,
-                remove: remove))
     }
 }

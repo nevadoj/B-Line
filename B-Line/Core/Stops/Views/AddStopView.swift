@@ -18,9 +18,9 @@ struct AddStopView: View {
         ZStack{
             Color("BPrimary").ignoresSafeArea()
             VStack(alignment: .leading){
-                Text("Stop #:")
+                Text("Stop No.")
                     .padding(.top, 30)
-                    .padding([.horizontal], 5)
+                    .padding(.horizontal, 5)
                     .foregroundColor(Color(hex: "DCDCDC"))
                     .fontWeight(.semibold)
                 
@@ -34,7 +34,8 @@ struct AddStopView: View {
                             .opacity(0.7)
                             .shadow(color: Color("BSecondary"), radius: 5)
                     )
-                    .padding(.top, 10)
+                    .keyboardType(.numberPad)
+                    .padding(.top, 5)
                     .onChange(of: stopID){ id in
                         submit = true
                         if(stopID.isEmpty){
@@ -45,18 +46,32 @@ struct AddStopView: View {
                 if(submit){
                     withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
                         HStack {
-                            PrimaryButton(imageName: "xmark")
-                                .padding()
-                                .onTapGesture {
-                                    stopID = ""
-                                }
-                            PrimaryButton(imageName: "checkmark")
-                                .padding()
-                                .onTapGesture {
-                                    // add to stops database
-                                    dismiss()
-                                }
-                            
+//                            PrimaryButton(imageName: "xmark")
+//                                .padding()
+//                                .onTapGesture {
+//                                    stopID = ""
+//                                }
+//                            PrimaryButton(imageName: "checkmark")
+//                                .padding()
+//                                .onTapGesture {
+//                                    // add to stops database
+//                                    dismiss()
+//                                }
+                            Button(){
+                                // add to stops database
+                            } label: {
+                                Text("Add")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.semibold)
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 250, height: 50)
+                            .background(
+                                RoundedRectangle(cornerRadius: 18)
+                                    .fill(Color("BSecondary"))
+                                    .opacity(0.7)
+                                    .shadow(color: Color("BSecondary"), radius: 5)
+                            )
+                            .padding(.top, 25)
                         }
                         .frame(width: UIScreen.main.bounds.width - 50)                        
                     }

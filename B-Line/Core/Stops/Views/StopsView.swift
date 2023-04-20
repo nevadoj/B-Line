@@ -23,6 +23,13 @@ struct StopsView: View {
         NavigationView{
             ZStack {
                 Color("BPrimary").ignoresSafeArea()
+                
+                /*
+                 TODO: Call firebase to load saved Bus Stops in database
+                 TODO: Display bus stops with StopViewCell
+                 
+                 for each bus stop in database: display with StopViewCell
+                 */
                 Text("Hello World!")
                     .foregroundColor(.white)
             }
@@ -47,7 +54,8 @@ struct StopsView: View {
             }
         }
         .onAppear(){
-            viewModel.sampleFetch(stopID: "58946")
+//            viewModel.sampleFetch(stopID: "58946")
+            // call API to update bus times
         }
     }
 }
