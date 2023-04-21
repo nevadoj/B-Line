@@ -10,13 +10,15 @@ import SwiftUI
 struct StopsView: View {
     
     @State var addStop = false
-    @StateObject private var viewModel = StopsViewModel()
+    @ObservedObject private var viewModel = StopsViewModel()
     
     init(){
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().standardAppearance = appearance
+        
+        viewModel.getStops()
     }
     
     var body: some View {
@@ -30,8 +32,9 @@ struct StopsView: View {
                  
                  for each bus stop in database: display with StopViewCell
                  */
-                Text("Hello World!")
-                    .foregroundColor(.white)
+                ForEach(viewModel.list, id: \.self){ stop in
+                    StopViewCell(busNumber: "502", address: stop.Name, stopNumber: stop.StopNo) // have to strip stop.Routes into individual buses 
+                }
             }
             .navigationTitle("Stops")
             .toolbar{
@@ -54,8 +57,8 @@ struct StopsView: View {
             }
         }
         .onAppear(){
-//            viewModel.sampleFetch(stopID: "58946")
-            // call API to update bus times
+            viewModel.sampleFetch(stopID: "58946")
+            // call API to update bus times -- call viewModel function which will call translink API 
         }
     }
 }

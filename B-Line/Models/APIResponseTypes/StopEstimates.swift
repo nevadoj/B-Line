@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct StopEstimates: Codable {
+    var RouteNo: String
+    var RouteName: String
+    var Direction: String
+    var RouteMap: RouteMap
+    var Schedules: [Schedule]
+}
+
 struct Schedule: Codable{
     var Pattern: String
     var Destination: String
@@ -17,17 +25,10 @@ struct Schedule: Codable{
     var CancelledStop: Bool
     var AddedTrip: Bool
     var AddedStop: Bool
-    var LastUpdate: String // Last updated time of the trip 
+    var LastUpdate: String // Last updated time of the trip
 }
 
 struct RouteMap: Codable{
     var Href: String
 }
 
-struct StopEstimates: Codable {
-    var RouteNo: String
-    var RouteName: String
-    var Direction: String
-    var RouteMap: RouteMap
-    var Schedules: [Schedule]
-}

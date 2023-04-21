@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct StopViewCell: View {
+    @State var busNumber: String
+    @State var address: String
+    @State var stopNumber: Int
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack(){
                 VStack(alignment: .leading){
-                    Text("502")
+                    Text(busNumber)
                         .font(.title)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.horizontal, 25)
-                    Text("58946")
+                    Text("\(stopNumber)")
                         .padding(.horizontal, 25)
                         .fontWeight(.medium)
                         .foregroundColor(Color(hex: "DCDCDC"))
-                    Text("Fraser Hwy @ 159 St")
+                    Text(address)
                         .padding(.horizontal, 25)
                         .fontWeight(.medium)
                         .foregroundColor(Color(hex: "DCDCDC"))
@@ -52,7 +56,7 @@ struct StopViewCell_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("BPrimary").ignoresSafeArea()
-            StopViewCell()
+            StopViewCell(busNumber: "502", address: "Fraser Hwy @ 159 St", stopNumber: 58946)
         }
     }
 }

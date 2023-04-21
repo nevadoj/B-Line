@@ -81,15 +81,27 @@ final class TLRequest{
         
         return request
     }
-
-    // https://api.translink.ca/rttiapi/v1/stops/58946?apikey=RfDK2UbNILAEqn1ksoCV
+    
+    func estimateRequest(_ stopID: String) -> TLRequest{
+        let request = TLRequest(
+            endpoint: .stops,
+            pathComponents: [stopID, "estimates"],
+            queryParameters: [
+                URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+            ]
+        )
+        
+        return request
+    }
 }
+
+// https://api.translink.ca/rttiapi/v1/stops/55612?apikey=[APIKey]
 
 extension TLRequest {
     static let stopsRequest = TLRequest(
         endpoint: .stops,
         pathComponents: ["58946"],
         queryParameters: [
-            URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+            URLQueryItem(name: "apikey", value: "apikey")
         ])
 }

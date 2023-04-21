@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stops: Codable{
+struct Stops: Codable, Hashable{
     var StopNo: Int
     var Name: String
     var BayNo: String
