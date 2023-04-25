@@ -13,6 +13,7 @@ struct AddStopView: View {
     
     @State private var stopID = ""
     @State private var submit = false
+    @ObservedObject private var viewModel = StopsViewModel()
     
     var body: some View {
         ZStack{
@@ -59,6 +60,8 @@ struct AddStopView: View {
 //                                }
                             Button(){
                                 // add to stops database
+                                viewModel.addStop(stopID: stopID)
+                                dismiss()
                             } label: {
                                 Text("Add")
                                     .foregroundColor(.white)

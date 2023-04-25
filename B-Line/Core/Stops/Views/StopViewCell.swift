@@ -21,7 +21,7 @@ struct StopViewCell: View {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.horizontal, 25)
-                    Text("\(stopNumber)")
+                    Text("\(String(stopNumber))")
                         .padding(.horizontal, 25)
                         .fontWeight(.medium)
                         .foregroundColor(Color(hex: "DCDCDC"))

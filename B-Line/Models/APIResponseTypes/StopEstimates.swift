@@ -19,7 +19,7 @@ struct Schedule: Codable{
     var Pattern: String
     var Destination: String
     var ExpectedLeaveTime: String
-    var ExpecteddCountdown: Int
+    var ExpectedCountdown: Int
     var ScheduleStatus: String // * scheduled, - delay, + ahead
     var CancelledTrip: Bool
     var CancelledStop: Bool

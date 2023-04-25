@@ -76,7 +76,7 @@ final class TLRequest{
             endpoint: .stops,
             pathComponents: [stopID],
             queryParameters: [
-                URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+                URLQueryItem(name: "apikey", value: apiKey)
             ])
         
         return request
@@ -87,7 +87,7 @@ final class TLRequest{
             endpoint: .stops,
             pathComponents: [stopID, "estimates"],
             queryParameters: [
-                URLQueryItem(name: "apikey", value: "RfDK2UbNILAEqn1ksoCV")
+                URLQueryItem(name: "apikey", value: apiKey)
             ]
         )
         
