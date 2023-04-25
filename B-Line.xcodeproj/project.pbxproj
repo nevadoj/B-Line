@@ -10,6 +10,7 @@
 		011C546B29A8236C0015AE2F /* MapViewMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C546A29A8236C0015AE2F /* MapViewMain.swift */; };
 		0149372F29F75BF600AF51F4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0149372E29F75BF600AF51F4 /* .gitignore */; };
 		0149373129F75C4C00AF51F4 /* TLApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149373029F75C4C00AF51F4 /* TLApi.swift */; };
+		0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149373429F7BD5300AF51F4 /* SavedStops.swift */; };
 		017A110E29AC9CEB00CE02D8 /* StopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */; };
 		017ADF592998323000A4537E /* B_LineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF582998323000A4537E /* B_LineApp.swift */; };
 		017ADF5D2998323100A4537E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5C2998323100A4537E /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		011C546A29A8236C0015AE2F /* MapViewMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewMain.swift; sourceTree = "<group>"; };
 		0149372E29F75BF600AF51F4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0149373029F75C4C00AF51F4 /* TLApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLApi.swift; sourceTree = "<group>"; };
+		0149373429F7BD5300AF51F4 /* SavedStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStops.swift; sourceTree = "<group>"; };
 		017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewCell.swift; sourceTree = "<group>"; };
 		017ADF552998323000A4537E /* B-Line.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "B-Line.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017ADF582998323000A4537E /* B_LineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_LineApp.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
+				0149373429F7BD5300AF51F4 /* SavedStops.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				018F7E0729A35DF5005D0E44 /* Buses.swift in Sources */,
 				018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */,
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
+				0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */,
 				01D9014F29A5E53600BBB103 /* LocationSearchMenuView.swift in Sources */,
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,

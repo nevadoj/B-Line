@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct StopEstimates: Codable {
+struct StopEstimates: Codable, Hashable, Equatable{
+    static func == (lhs: StopEstimates, rhs: StopEstimates) -> Bool {
+        return lhs.RouteName == rhs.RouteName
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(RouteName)
+    }
     var RouteNo: String
     var RouteName: String
     var Direction: String
@@ -15,7 +22,7 @@ struct StopEstimates: Codable {
     var Schedules: [Schedule]
 }
 
-struct Schedule: Codable{
+struct Schedule: Codable, Hashable{
     var Pattern: String
     var Destination: String
     var ExpectedLeaveTime: String

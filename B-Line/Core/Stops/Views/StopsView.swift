@@ -19,7 +19,6 @@ struct StopsView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         
         viewModel.getStops()
-        viewModel.getStopEstimates()
     }
     
     var body: some View {
@@ -35,17 +34,11 @@ struct StopsView: View {
                  */
                 
                 // Need a scrollview for the stop cells
-                // WE JUST WANT TO WORK WITH estimatesList instead of stopsList directly for display purposes
                 VStack(alignment: .leading){
-                    // Heading for specific stop number
-                    ForEach(viewModel.stopsList, id: \.self){ stop in
-                        let routes = stop.Routes.components(separatedBy: ", ")
-                        ForEach(routes, id: \.self){ bus in
-                            StopViewCell(busNumber: bus, address: stop.Name, stopNumber: stop.StopNo)
+                    ForEach(viewModel.savedStopsList, id: \.self){ stop in
+                        ForEach(stop.Schedule, id: \.self){ bus in
+                            StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name, stopNumber: stop.BusStop.StopNo)
                                 .padding(10)
-                                .onTapGesture {
-                                    viewModel.checkEstimatesList()
-                                }
                         }
                     }
                     Spacer()
@@ -56,7 +49,6 @@ struct StopsView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button{
                         addStop.toggle()
-                        viewModel.getStopEstimates()
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(.white)
@@ -73,11 +65,7 @@ struct StopsView: View {
             }
         }
         .onAppear(){
-//            viewModel.sampleFetch(stopID: "58946")
-            // call API to update bus times -- call viewModel function which will call translink API
             
-            // For each viewmodel.List (saved bus routes) query the API 
-//            viewModel.sampleEstimates(stopID: "58946")
         }
     }
 }

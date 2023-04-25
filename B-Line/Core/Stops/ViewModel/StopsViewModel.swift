@@ -5,6 +5,8 @@
 //  Created by Joseph Nevado on 2023-02-20.
 //
 
+// Make our own struct that holds a Stops & StopEstimates and then just make an array using that new struct 
+
 import Foundation
 import Firebase
 
@@ -14,27 +16,11 @@ class StopsViewModel: ObservableObject{
     @Published var stopsList = [Stops](){
         didSet{
             for stop in self.stopsList{
-                sampleEstimates(stopID: String(stop.StopNo))
+                fetchStopAndEstimate(stopID: String(stop.StopNo))
             }
         }
     }
-    
-    @Published var estimatesList = [StopEstimates]()
-    @Published var savedStopsList = [String]()
-    
-    // fetch saved routes from Firebase -- fetch saved routes that user has from Firebase
-    
-    //    func sampleFetch() {
-    //        TLService.shared.execute(.stopsRequest, expecting: Stops.self) { result in
-    //            switch result {
-    //            case .success(let model):
-    //                print(model.Name)
-    //
-    //            case .failure(let error):
-    //                print(String(describing: error))
-    //            }
-    //        }
-    //    }
+    @Published var savedStopsList = [SavedStops]()
     
     func sampleFetch(stopID: String){
         let request = TLRequest(endpoint: .stops)
@@ -47,37 +33,6 @@ class StopsViewModel: ObservableObject{
                 print(String(describing: error))
             }
         }
-        // this request should get the stop information, and then store into database
-        // don't want to keep requesting the .stops endpoint when we load the page
-        
-        // API request to get stop estimates
-        //        TLService.shared.execute(request.estimateRequest(stopID), expecting: [StopEstimates].self){ result in
-        //            switch result{
-        //            case .success(let model):
-        //                print(String(describing: model))
-        //            case .failure(let error):
-        //                print(String(describing: error))
-        //            }
-        //        }
-    }
-    
-    func sampleEstimates(stopID: String){
-        let request = TLRequest(endpoint: .stops)
-        TLService.shared.execute(request.estimateRequest(stopID), expecting: [StopEstimates].self){ result in
-            switch result{
-            case .success(let model):
-                print(String(describing: model))
-                DispatchQueue.main.async {
-                    self.estimatesList.append(contentsOf: model)
-                }
-            case .failure(let error):
-                print(String(describing: error))
-            }
-        }
-    }
-    
-    func checkEstimatesList(){
-        print(String(describing: estimatesList))
     }
     
     func addStop(stopID: String){
@@ -128,33 +83,33 @@ class StopsViewModel: ObservableObject{
         }
     }
     
-    func getSavedStops(){
-        let db = Firestore.firestore()
+    func fetchStopAndEstimate(stopID: String){
+        let request = TLRequest(endpoint: .stops)
         
-        db.collection("bus_stops").getDocuments{ snapshot, error in
-            if(error == nil){
-                if let snapshot = snapshot {
-                    self.savedStopsList = snapshot.documents.map{ d in
-                        return d["StopNo"] as? String ?? "StopNo"
+        TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
+            switch result{
+            case .success(let model):
+                TLService.shared.execute(request.estimateRequest(stopID), expecting: [StopEstimates].self){ estimateResult in
+                    switch estimateResult{
+                    case .success(let estimateModel):
+                        DispatchQueue.main.async {
+                            self.savedStopsList.append(SavedStops(BusStop: model, Schedule: estimateModel))                            
+                        }
+                    case .failure(let estimateError):
+                        print(String(describing: estimateError))
                     }
                 }
-            }
-            else{
+            case .failure(let error):
                 print(String(describing: error))
-                return
             }
         }
     }
     
     func getStopEstimates(){
-        self.estimatesList.removeAll()
+        savedStopsList.removeAll()
         for stop in self.stopsList{
-            sampleEstimates(stopID: String(stop.StopNo))
+            fetchStopAndEstimate(stopID: String(stop.StopNo))
         }
-    }
-    
-    func updateEstimates(){
-        // maybe add this function so that we dont destroy/create new views on refresh
     }
 }
 
