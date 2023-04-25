@@ -1,5 +1,7 @@
-.DS_Store
+*.DS_Store
 Pods/
-GoogleService-Info.plist
-Info.plist
-TLApi.swift
+xcuserdata/
+B-Line/GoogleService-Info.plist
+B-Line/Info.plist
+B-Line/TLApi.swift
+B-Line/samplefile.swift
