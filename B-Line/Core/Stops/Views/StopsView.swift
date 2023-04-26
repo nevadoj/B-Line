@@ -14,58 +14,56 @@ struct StopsView: View {
     
     init(){
         let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = UIColor.clear
+        appearance.backgroundColor = UIColor(Color("BPrimary"))
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         viewModel.getStops()
     }
     
     var body: some View {
         NavigationView{
-            ZStack {
-                Color("BPrimary").ignoresSafeArea()
-                
-                /*
-                 TODO: Call firebase to load saved Bus Stops in database
-                 TODO: Display bus stops with StopViewCell
-                 
-                 for each bus stop in database: display with StopViewCell
-                 */
-                
-                // Need a scrollview for the stop cells
-                VStack(alignment: .leading){
-                    ForEach(viewModel.savedStopsList, id: \.self){ stop in
-                        ForEach(stop.Schedule, id: \.self){ bus in
-                            StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name, stopNumber: stop.BusStop.StopNo)
-                                .padding(10)
+            ScrollView{
+                ZStack{
+                    VStack(alignment: .leading){
+                        ForEach(viewModel.savedStopsList, id: \.self){ stop in
+                            ForEach(stop.Schedule, id: \.self){ bus in
+                                // Get first entry from Schedules and display on view cell
+                                // Pass in bus into sheet view for detailed view
+                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name, stopNumber: stop.BusStop.StopNo)
+                                    .padding(10)
+                            }
                         }
+                        Spacer()
                     }
-                    Spacer()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("BPrimary"))
                 }
-            }
-            .navigationTitle("Stops")
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button{
-                        addStop.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
-                    .sheet(isPresented: $addStop){
-                        NavigationView{
-                            AddStopView()
-                                .navigationTitle("Add Stop")
+                .navigationTitle("Stops")
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button{
+                            addStop.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(.white)
+                                .fontWeight(.semibold)
                         }
-                        .presentationDetents([.medium])
+                        .sheet(isPresented: $addStop){
+                            NavigationView{
+                                AddStopView()
+                                    .navigationTitle("Add Stop")
+                            }
+                            .presentationDetents([.medium])
+                        }
                     }
                 }
             }
-        }
-        .onAppear(){
-            
+            .frame(maxWidth: .infinity)
+            .background(Color("BPrimary"))
         }
     }
 }
