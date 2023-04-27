@@ -11,6 +11,7 @@ struct StopsView: View {
     
     @State var addStop = false
     @ObservedObject private var viewModel = StopsViewModel()
+    @EnvironmentObject private var stopViewModel: StopsViewModel
     
     init(){
         let appearance = UINavigationBarAppearance()
@@ -21,6 +22,7 @@ struct StopsView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
+        // if viewmodel 
         viewModel.getStops()
     }
     
@@ -33,7 +35,13 @@ struct StopsView: View {
                             ForEach(stop.Schedule, id: \.self){ bus in
                                 // Get first entry from Schedules and display on view cell
                                 // Pass in bus into sheet view for detailed view
-                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name, stopNumber: stop.BusStop.StopNo)
+                                
+                                // Abstract this to the viewModel
+                                let arrivalString = bus.Schedules.first?.ExpectedLeaveTime
+                                let arrivalDate = arrivalString?.dateFromString(inputStr: arrivalString ?? "10:34p.m 2022-04-26")
+                                
+                                let arrivalTimestamp = Int((arrivalDate?.timeIntervalSinceNow ?? 0) / 60) // handle if negative?
+                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: arrivalTimestamp)
                                     .padding(10)
                             }
                         }

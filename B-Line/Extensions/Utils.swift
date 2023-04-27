@@ -25,6 +25,14 @@ extension Color {
     static var examplePurple = Color(hex: "7D26FE")
 }
 
+extension String{
+    func dateFromString(inputStr: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
+        return dateFormatter.date(from: inputStr) ?? Date()
+    }
+}
+
 extension View {
     /// Hide or show the view based on a boolean value.
     ///
