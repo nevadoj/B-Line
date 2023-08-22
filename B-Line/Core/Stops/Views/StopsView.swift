@@ -27,8 +27,8 @@ struct StopsView: View {
             ScrollView{
                 ZStack{
                     VStack(alignment: .leading){
-                        ForEach(stopViewModel.savedStopsList, id: \.self){ stop in
-                            ForEach(stop.Schedule, id: \.self){ bus in
+                        ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, sched in
+                            ForEach(sched.Schedule, id: \.self){ bus in
                                 // Get first entry from Schedules and display on view cell
                                 // Pass in bus into sheet view for detailed view
                                 
@@ -37,7 +37,7 @@ struct StopsView: View {
                                 let arrivalDate = arrivalString?.dateFromString(inputStr: arrivalString ?? "10:34p.m 2022-04-26")
                                 
                                 let arrivalTimestamp = Int((arrivalDate?.timeIntervalSinceNow ?? 0) / 60) // handle if negative?
-                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: arrivalTimestamp)
+                                StopViewCell(busNumber: bus.RouteNo, address: sched.BusStop.Name.capitalized, stopNumber: sched.BusStop.StopNo, arrivalTime: arrivalTimestamp)
                                     .padding(10)
                             }
                         }
@@ -70,7 +70,7 @@ struct StopsView: View {
             .background(Color("BPrimary"))
         }
         .onAppear{
-            stopViewModel.getStopEstimates()
+            stopViewModel.getStopEstimates() // refactor this method to update the savedStopsList instead of removing and adding everytime
         }
     }
 }

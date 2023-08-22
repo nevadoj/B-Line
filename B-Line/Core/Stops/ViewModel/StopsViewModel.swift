@@ -20,10 +20,10 @@ class StopsViewModel: ObservableObject{
             }
         }
     }
-    @Published var savedStopsList = [SavedStops]()
+    @Published var savedStops: [Int : SavedStops] = [:]
+    
     
     init(){
-        print("Initializing stops viewmodel")
         self.getStops()
         for stop in self.stopsList{
             fetchStopAndEstimate(stopID: String(stop.StopNo))
@@ -101,8 +101,19 @@ class StopsViewModel: ObservableObject{
                     switch estimateResult{
                     case .success(let estimateModel):
                         DispatchQueue.main.async {
-                            self.savedStopsList.append(SavedStops(BusStop: model, Schedule: estimateModel))
-                            print("Added Stop \(model.Name)")
+                            var saved = self.savedStops.contains{ key, value in
+                                return key == model.StopNo
+                            }
+                            if saved{
+                                // just update estimates
+                                self.savedStops[model.StopNo]?.Schedule = estimateModel
+                                print("Updated Estimates for \(model.StopNo)")
+                            }
+                            else{
+                                // add to savedStops
+                                self.savedStops[model.StopNo] = SavedStops(BusStop: model, Schedule: estimateModel)
+                                print("Added Stop \(model.Name)")
+                            }
                         }
                     case .failure(let estimateError):
                         print(String(describing: estimateError))
@@ -115,7 +126,6 @@ class StopsViewModel: ObservableObject{
     }
     
     func getStopEstimates(){
-        savedStopsList.removeAll()
         for stop in self.stopsList{
             fetchStopAndEstimate(stopID: String(stop.StopNo))
         }
