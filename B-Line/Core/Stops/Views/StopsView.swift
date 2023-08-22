@@ -32,12 +32,7 @@ struct StopsView: View {
                                 // Get first entry from Schedules and display on view cell
                                 // Pass in bus into sheet view for detailed view
                                 
-                                // Abstract this to the viewModel
-                                let arrivalString = bus.Schedules.first?.ExpectedLeaveTime
-                                let arrivalDate = arrivalString?.dateFromString(inputStr: arrivalString ?? "10:34p.m 2022-04-26")
-                                
-                                let arrivalTimestamp = Int((arrivalDate?.timeIntervalSinceNow ?? 0) / 60) // handle if negative?
-                                StopViewCell(busNumber: bus.RouteNo, address: sched.BusStop.Name.capitalized, stopNumber: sched.BusStop.StopNo, arrivalTime: arrivalTimestamp)
+                                StopViewCell(busNumber: bus.RouteNo, address: sched.BusStop.Name.capitalized, stopNumber: sched.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
                                     .padding(10)
                             }
                         }
