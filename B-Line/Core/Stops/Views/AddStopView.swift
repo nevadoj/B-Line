@@ -13,7 +13,8 @@ struct AddStopView: View {
     
     @State private var stopID = ""
     @State private var submit = false
-    @ObservedObject private var viewModel = StopsViewModel()
+//    @ObservedObject private var viewModel = StopsViewModel()
+    @EnvironmentObject var viewModel: StopsViewModel
     
     var body: some View {
         ZStack{

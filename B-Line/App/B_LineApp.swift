@@ -21,11 +21,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct B_LineApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var locationViewModel = LocationSearchViewModel()
-    
+    @StateObject var stopViewModel = StopsViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(locationViewModel)
+                .environmentObject(stopViewModel)
         }
     }
 }

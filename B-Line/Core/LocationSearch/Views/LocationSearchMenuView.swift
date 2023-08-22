@@ -12,6 +12,7 @@ struct LocationSearchMenuView: View {
     @EnvironmentObject var viewModel: LocationSearchViewModel
     @Binding var showSearchMenu: Bool
     @Binding var defaultLocation: Bool
+    @Binding var showNavBar: Bool
     
     var body: some View {
         VStack(alignment: .leading){
@@ -53,6 +54,8 @@ struct LocationSearchMenuView: View {
                                         .onTapGesture {
                                             viewModel.selectLocation(result)
                                             showSearchMenu.toggle()
+                                            showNavBar.toggle()
+                                            
                                             
                                             if(defaultLocation){
                                                 defaultLocation.toggle() // need a button to re-center location which will un-toggle this
@@ -73,7 +76,7 @@ struct LocationSearchMenuView: View {
 struct LocationSearchMenuView_Previews: PreviewProvider {
     static let viewModel = LocationSearchViewModel()
     static var previews: some View {
-        LocationSearchMenuView(showSearchMenu: .constant(true), defaultLocation: .constant(true))
+        LocationSearchMenuView(showSearchMenu: .constant(true), defaultLocation: .constant(true), showNavBar: .constant(true))
             .environmentObject(viewModel)
     }
 }

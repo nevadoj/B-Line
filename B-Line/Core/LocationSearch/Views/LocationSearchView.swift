@@ -12,11 +12,13 @@ struct LocationSearchView: View {
     @StateObject var viewModel = LocationSearchViewModel()
     @Binding var showSearchMenu: Bool
     @Binding var defaultLocation: Bool
+    @Binding var showNavBar: Bool
     
     var body: some View {
         VStack {
             Button{
                 showSearchMenu.toggle()
+                showNavBar.toggle()
             } label: {
                 withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
                     PrimaryButton(imageName: showSearchMenu ? "xmark" : "magnifyingglass")
@@ -38,6 +40,6 @@ struct LocationSearchView: View {
 
 struct LocationSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchView(showSearchMenu: .constant(true), defaultLocation: .constant(false))
+        LocationSearchView(showSearchMenu: .constant(true), defaultLocation: .constant(false), showNavBar: .constant(true))
     }
 }

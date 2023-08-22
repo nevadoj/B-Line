@@ -11,6 +11,7 @@ struct StopViewCell: View {
     @State var busNumber: String
     @State var address: String
     @State var stopNumber: Int
+    @State var arrivalTime: Int
     
     var body: some View {
         VStack(alignment: .leading){
@@ -32,7 +33,8 @@ struct StopViewCell: View {
                 }
                 Spacer()
                 VStack{
-                    Text("10")
+                    // TODO: Handle minutes logic 
+                    Text("\(String(arrivalTime))")
                         .padding(.horizontal, 25)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
@@ -56,7 +58,7 @@ struct StopViewCell_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("BPrimary").ignoresSafeArea()
-            StopViewCell(busNumber: "502", address: "Fraser Hwy @ 159 St", stopNumber: 58946)
+            StopViewCell(busNumber: "502", address: "Fraser Hwy @ 159 St", stopNumber: 58946, arrivalTime: 4)
         }
     }
 }

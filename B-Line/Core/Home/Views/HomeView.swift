@@ -15,6 +15,7 @@ struct HomeView: View {
     
     @State private var showSearchMenu = false
     @State private var defaultLocation = true
+    @State private var showNavBar = true
     
     var body: some View {
         ZStack(){
@@ -22,7 +23,7 @@ struct HomeView: View {
             case 0:
                 StopsView()
             case 1:
-                MapView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation)
+                MapView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation, showNavBar: $showNavBar)
             default:
                 StopsView()
             }
@@ -41,11 +42,11 @@ struct HomeView: View {
                 .ballColor(Color("BSecondary"))
                 .ballAnimation(.interpolatingSpring(stiffness: 130, damping: 15))
                 .indentAnimation(.easeOut(duration: 0.3))
-                .isHidden(showSearchMenu)
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .ignoresSafeArea(.keyboard)
+            .opacity(showNavBar ? 1 : 0)
         }
         .onChange(of: selectedIndex) { [selectedIndex] _ in
            prevSelectedIndex = selectedIndex

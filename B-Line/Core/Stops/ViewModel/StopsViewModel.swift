@@ -22,6 +22,14 @@ class StopsViewModel: ObservableObject{
     }
     @Published var savedStopsList = [SavedStops]()
     
+    init(){
+        print("Initializing stops viewmodel")
+        self.getStops()
+        for stop in self.stopsList{
+            fetchStopAndEstimate(stopID: String(stop.StopNo))
+        }
+    }
+    
     func sampleFetch(stopID: String){
         let request = TLRequest(endpoint: .stops)
         
@@ -52,7 +60,7 @@ class StopsViewModel: ObservableObject{
     }
     
     
-    // Just fetch a stopID string from DB instead of a Stops struct
+    // TODO: Just fetch a stopID string from DB instead of a Stops struct
     func getStops(){
         let db = Firestore.firestore()
         
@@ -93,7 +101,8 @@ class StopsViewModel: ObservableObject{
                     switch estimateResult{
                     case .success(let estimateModel):
                         DispatchQueue.main.async {
-                            self.savedStopsList.append(SavedStops(BusStop: model, Schedule: estimateModel))                            
+                            self.savedStopsList.append(SavedStops(BusStop: model, Schedule: estimateModel))
+                            print("Added Stop \(model.Name)")
                         }
                     case .failure(let estimateError):
                         print(String(describing: estimateError))

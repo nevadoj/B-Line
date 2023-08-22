@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MapView: View {
     
-//    @State private var showSearchMenu = false
     @Binding var showSearchMenu: Bool
     @Binding var defaultLocation: Bool
+    @Binding var showNavBar: Bool
     
     var body: some View {
         ZStack(alignment: .top){
@@ -21,13 +21,13 @@ struct MapView: View {
             }
             else{
                 withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
-                    LocationSearchMenuView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation)
+                    LocationSearchMenuView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation, showNavBar: $showNavBar)
                 }
             }
             
             HStack {
                 Spacer()
-                LocationSearchView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation)
+                LocationSearchView(showSearchMenu: $showSearchMenu, defaultLocation: $defaultLocation, showNavBar: $showNavBar)
                     .padding(25)
             }
         }
@@ -36,6 +36,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(showSearchMenu: .constant(false), defaultLocation: .constant(true))
+        MapView(showSearchMenu: .constant(false), defaultLocation: .constant(true), showNavBar: .constant(true))
     }
 }

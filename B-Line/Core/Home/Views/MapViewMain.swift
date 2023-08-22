@@ -46,6 +46,8 @@ struct MapViewMain: View {
         ZStack{
             Map(coordinateRegion: defaultLocation ? region! : searchRegion!, showsUserLocation: true)
                 .ignoresSafeArea()
+            // need coordinate data for all the bus stops
+            // create a annotation to display for each bus stop inside of Map{  }
         }
     }
 }
