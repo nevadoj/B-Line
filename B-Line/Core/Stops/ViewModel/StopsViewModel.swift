@@ -44,18 +44,25 @@ class StopsViewModel: ObservableObject{
     }
     
     func addStop(stopID: String){
-        // change DB to just store a string of stopID
         let db = Firestore.firestore()
+        let request = TLRequest(endpoint: .stops)
         
-        db.collection("bus_stops").addDocument(data: ["StopNo":stopID]){ error in
-            if error == nil{
-                self.getStops()
-            }
-            else{
-                // Handle the error
+        TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
+            switch result{
+            case .success(let model):
+                db.collection("stops").addDocument(data: ["StopNo":model.StopNo, "Name":model.Name, "BayNo":model.BayNo, "City":model.City, "OnStreet":model.OnStreet, "AtStreet":model.AtStreet, "Latitude":model.Latitude, "Longitude":model.Longitude, "WheelchairAccess":model.WheelchairAccess, "Distance":model.Distance, "Routes":model.Routes]){ error in
+                    if error == nil{
+                        self.getStops()
+                    }
+                    else{
+                        print(String(describing: error))
+                        return
+                    }
+                }
+            case .failure(let error):
                 print(String(describing: error))
-                return
             }
+            
         }
     }
     
@@ -101,7 +108,7 @@ class StopsViewModel: ObservableObject{
                     switch estimateResult{
                     case .success(let estimateModel):
                         DispatchQueue.main.async {
-                            var saved = self.savedStops.contains{ key, value in
+                            let saved = self.savedStops.contains{ key, value in
                                 return key == model.StopNo
                             }
                             if saved{
