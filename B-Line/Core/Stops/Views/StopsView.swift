@@ -50,7 +50,8 @@ struct StopsView: View {
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{
-                            addStop.toggle()
+//                            addStop.toggle()
+                            stopViewModel.sampleFetch()
                         } label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.white)
@@ -61,7 +62,7 @@ struct StopsView: View {
                                 AddStopView()
                                     .navigationTitle("Add Stop")
                             }
-                            .presentationDetents([.medium])
+                            .presentationDetents([.height(250)])
                         }
                     }
                 }
@@ -70,7 +71,7 @@ struct StopsView: View {
             .background(Color("BPrimary"))
         }
         .onAppear{
-            stopViewModel.getStopEstimates() // refactor this method to update the savedStopsList instead of removing and adding everytime
+            stopViewModel.getStopEstimates()
         }
     }
 }

@@ -11,6 +11,7 @@ final class TLRequest{
     
     private struct Constants{
         static let baseUrl = "https://api.translink.ca/rttiapi/v1"
+        static let baseUrl2 = "https://api.translink.ca/rttiapi"
     }
     
     private let endpoint: TLEndpoint
@@ -19,9 +20,17 @@ final class TLRequest{
     
     private let queryParameters: [URLQueryItem]
 
+    private let otherBase: Bool
+    
     // Constructed url for the API request
     private var urlString: String {
-        var string = Constants.baseUrl
+        var string = ""
+        if otherBase{
+            string = Constants.baseUrl2
+        }
+        else{
+            string = Constants.baseUrl
+        }
         string += "/"
         string += endpoint.rawValue
         
@@ -64,11 +73,13 @@ final class TLRequest{
     public init(
         endpoint: TLEndpoint,
         pathComponents: [String] = [],
-        queryParameters: [URLQueryItem] = []
+        queryParameters: [URLQueryItem] = [],
+        otherBase: Bool
     ){
         self.endpoint = endpoint
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
+        self.otherBase = otherBase
     }
     
     func stopRequest(_ stopID: String) -> TLRequest{
@@ -77,7 +88,8 @@ final class TLRequest{
             pathComponents: [stopID],
             queryParameters: [
                 URLQueryItem(name: "apikey", value: apiKey)
-            ])
+            ],
+            otherBase: false)
         
         return request
     }
@@ -88,9 +100,21 @@ final class TLRequest{
             pathComponents: [stopID, "estimates"],
             queryParameters: [
                 URLQueryItem(name: "apikey", value: apiKey)
-            ]
+            ],
+            otherBase: false
         )
         
+        return request
+    }
+    
+    func discoveryRequest() -> TLRequest{
+        let request = TLRequest(
+            endpoint: .v1,
+            pathComponents: ["stops"],
+            queryParameters: [URLQueryItem(name: "apikey", value: apiKey), URLQueryItem(name: "lat", value: "49.187706"), URLQueryItem(name: "long", value: "-122.850060")],
+            otherBase: true
+        )
+
         return request
     }
 }
@@ -103,5 +127,6 @@ extension TLRequest {
         pathComponents: ["58946"],
         queryParameters: [
             URLQueryItem(name: "apikey", value: "apikey")
-        ])
+        ],
+        otherBase: false)
 }

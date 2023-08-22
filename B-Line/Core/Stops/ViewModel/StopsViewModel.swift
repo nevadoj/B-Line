@@ -30,10 +30,10 @@ class StopsViewModel: ObservableObject{
         }
     }
     
-    func sampleFetch(stopID: String){
-        let request = TLRequest(endpoint: .stops)
+    func sampleFetch(){
+        let request = TLRequest(endpoint: .v1, otherBase: false)
         
-        TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
+        TLService.shared.execute(request.discoveryRequest(), expecting: [Stops].self){ result in
             switch result{
             case .success(let model):
                 print(String(describing: model))
@@ -45,7 +45,7 @@ class StopsViewModel: ObservableObject{
     
     func addStop(stopID: String){
         let db = Firestore.firestore()
-        let request = TLRequest(endpoint: .stops)
+        let request = TLRequest(endpoint: .stops, otherBase: false)
         
         TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
             switch result{
@@ -99,7 +99,7 @@ class StopsViewModel: ObservableObject{
     }
     
     func fetchStopAndEstimate(stopID: String){
-        let request = TLRequest(endpoint: .stops)
+        let request = TLRequest(endpoint: .stops, otherBase: false)
         
         TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
             switch result{
@@ -108,6 +108,7 @@ class StopsViewModel: ObservableObject{
                     switch estimateResult{
                     case .success(let estimateModel):
                         DispatchQueue.main.async {
+                            print(String(describing: estimateModel))
                             let saved = self.savedStops.contains{ key, value in
                                 return key == model.StopNo
                             }

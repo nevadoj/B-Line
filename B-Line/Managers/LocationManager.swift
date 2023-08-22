@@ -33,7 +33,7 @@ extension LocationManager: CLLocationManagerDelegate {
         DispatchQueue.main.async{
             self.location = locations.last
         }
-        locationManager.stopUpdatingLocation()
+//        locationManager.stopUpdatingLocation()
     }
 }
 

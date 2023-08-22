@@ -12,4 +12,5 @@ import Foundation
     case buses
     case routes
     case status
+    case v1
 }
