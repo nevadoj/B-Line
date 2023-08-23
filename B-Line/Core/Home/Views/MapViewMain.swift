@@ -13,24 +13,31 @@ struct MapViewMain: View {
     @EnvironmentObject var stopViewModel: StopsViewModel
     @EnvironmentObject var userLocationViewModel: LocationViewModel
     
+    var region: MKCoordinateRegion{
+        guard let location = userLocationViewModel.location else{
+            return MKCoordinateRegion(center: mapDefaults.defaultLocation, span: mapDefaults.defaultSpan)
+        }
+        
+        let region = MKCoordinateRegion(center: location.coordinate, span: mapDefaults.defaultSpan)
+        return region
+    }
+    
     var searchRegion: MKCoordinateRegion {
-            withAnimation{
-                guard let searchLocation = locationViewModel.selectedLocationCoordinate else {
-                    return MKCoordinateRegion.defaultRegion()
-                }
-                
-                let searchRegion = MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: searchLocation.latitude, longitude: searchLocation.longitude),
-                    span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-                
-                return searchRegion
+            guard let searchLocation = locationViewModel.selectedLocationCoordinate else {
+                return MKCoordinateRegion.defaultRegion()
             }
+            
+            let searchRegion = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: searchLocation.latitude, longitude: searchLocation.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+            
+            return searchRegion
         }
     
     @Binding var defaultLocation: Bool
     var body: some View {
         ZStack{
-            Map(coordinateRegion: defaultLocation ? $userLocationViewModel.region : searchRegion.getBinding()!,
+            Map(coordinateRegion: defaultLocation ? region.getBinding()! : searchRegion.getBinding()!,
                 showsUserLocation: true,
                 annotationItems: stopViewModel.nearbyStops,
                 annotationContent: { stop in
@@ -49,9 +56,9 @@ struct MapViewMain: View {
             // store in array
         }
         .onAppear{
-            stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.latitude) : String(format: "%.6f", searchRegion.center
-                .latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
-                    .longitude) : String(format: "%.6f", searchRegion.center
+            stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", region.center
+                .latitude) : String(format: "%.6f", searchRegion.center
+                    .latitude), lon: defaultLocation ? String(format: "%.6f", region.center.longitude) : String(format: "%.6f", searchRegion.center
                         .longitude))
         }
     }

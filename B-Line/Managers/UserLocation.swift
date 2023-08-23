@@ -17,19 +17,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     var locationManager: CLLocationManager?
     @Published var region = MKCoordinateRegion(center: mapDefaults.defaultLocation, span: mapDefaults.defaultSpan)
-    
-    
-//    func checkLocationServices(){
-//        if CLLocationManager.locationServicesEnabled(){
-//            locationManager = CLLocationManager()
-//            locationManager!.delegate = self
-//            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager?.startUpdatingLocation()
-//        }
-//        else{
-//            // handle if location services are off
-//        }
-//    }
+    @Published var location: CLLocation?
     
     override init(){
         super.init()
@@ -58,5 +46,13 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard !locations.isEmpty else { return }
+        DispatchQueue.main.async{
+            self.location = locations.last
+        }
+        locationManager?.stopUpdatingLocation()
     }
 }

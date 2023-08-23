@@ -4,3 +4,5 @@ xcuserdata/
 GoogleService-Info.plist
 Info.plist
 TLApi.swift
+MapViewRepresentable.swift
+LocationManager.swift
