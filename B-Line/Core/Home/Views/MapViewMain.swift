@@ -9,43 +9,28 @@ import SwiftUI
 import MapKit
 
 struct MapViewMain: View {
-    @StateObject private var locationManager = LocationManager()
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     @EnvironmentObject var stopViewModel: StopsViewModel
+    @EnvironmentObject var userLocationViewModel: LocationViewModel
+    
+    var searchRegion: MKCoordinateRegion {
+            withAnimation{
+                guard let searchLocation = locationViewModel.selectedLocationCoordinate else {
+                    return MKCoordinateRegion.defaultRegion()
+                }
+                
+                let searchRegion = MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: searchLocation.latitude, longitude: searchLocation.longitude),
+                    span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+                
+                return searchRegion
+            }
+        }
     
     @Binding var defaultLocation: Bool
-    
-    var region: Binding<MKCoordinateRegion>? {
-        withAnimation{
-            guard let location = locationManager.location else {
-                return MKCoordinateRegion.defaultRegion().getBinding()
-            }
-            
-            let region = MKCoordinateRegion(
-                center: location.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-            
-            return region.getBinding()
-        }
-    }
-    
-    var searchRegion: Binding<MKCoordinateRegion>? {
-        withAnimation{
-            guard let searchLocation = locationViewModel.selectedLocationCoordinate else {
-                return MKCoordinateRegion.defaultRegion().getBinding()
-            }
-            
-            let searchRegion = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: searchLocation.latitude, longitude: searchLocation.longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-            
-            return searchRegion.getBinding()            
-        }
-    }
-    
     var body: some View {
         ZStack{
-            Map(coordinateRegion: defaultLocation ? region! : searchRegion!,
+            Map(coordinateRegion: defaultLocation ? $userLocationViewModel.region : searchRegion.getBinding()!,
                 showsUserLocation: true,
                 annotationItems: stopViewModel.nearbyStops,
                 annotationContent: { stop in
@@ -64,8 +49,10 @@ struct MapViewMain: View {
             // store in array
         }
         .onAppear{
-            stopViewModel.getNearbyStops(lat: String(locationManager.location?.coordinate.latitude ?? 49.158527), lon: String(locationManager.location?.coordinate.longitude ?? -122.782270))
-            print(stopViewModel.nearbyStops)
+            stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.latitude) : String(format: "%.6f", searchRegion.center
+                .latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
+                    .longitude) : String(format: "%.6f", searchRegion.center
+                        .longitude))
         }
     }
 }

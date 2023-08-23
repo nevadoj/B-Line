@@ -9,10 +9,12 @@ import SwiftUI
 
 struct LocationSearchView: View {
     
-    @StateObject var viewModel = LocationSearchViewModel()
     @Binding var showSearchMenu: Bool
     @Binding var defaultLocation: Bool
     @Binding var showNavBar: Bool
+    
+    @EnvironmentObject var stopViewModel: StopsViewModel
+    @EnvironmentObject var userLocationViewModel: LocationViewModel
     
     var body: some View {
         VStack {
@@ -29,6 +31,9 @@ struct LocationSearchView: View {
             if(!defaultLocation){
                 Button{
                     defaultLocation.toggle()
+                    stopViewModel.getNearbyStops(lat: String(format: "%.6f", userLocationViewModel.region.center
+                        .latitude), lon: String(format: "%.6f", userLocationViewModel.region.center
+                        .longitude))
                 } label: {
                     PrimaryButton(imageName: "location.fill")
                 }

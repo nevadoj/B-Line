@@ -33,7 +33,7 @@ extension LocationManager: CLLocationManagerDelegate {
         DispatchQueue.main.async{
             self.location = locations.last
         }
-//        locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
 }
 
@@ -42,7 +42,7 @@ extension MKCoordinateRegion {
         MKCoordinateRegion(
 //            center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
             center: CLLocationCoordinate2D(latitude: 49.158527, longitude: -122.782270),
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
     }
     
     func getBinding() -> Binding<MKCoordinateRegion>? {

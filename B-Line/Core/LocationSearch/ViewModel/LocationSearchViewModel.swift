@@ -36,7 +36,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
             }
             guard let item = response?.mapItems.first else { return }
             
-            let coordinate = item.placemark.coordinate //  query for this using transit
+            let coordinate = item.placemark.coordinate
             self.selectedLocationCoordinate = coordinate
         }
     }
