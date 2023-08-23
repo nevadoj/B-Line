@@ -11,6 +11,7 @@ import MapKit
 struct MapViewMain: View {
     @StateObject private var locationManager = LocationManager()
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
+    @EnvironmentObject var stopViewModel: StopsViewModel
     
     @Binding var defaultLocation: Bool
     
@@ -44,10 +45,27 @@ struct MapViewMain: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: defaultLocation ? region! : searchRegion!, showsUserLocation: true)
+            Map(coordinateRegion: defaultLocation ? region! : searchRegion!,
+                showsUserLocation: true,
+                annotationItems: stopViewModel.nearbyStops,
+                annotationContent: { stop in
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude), tint: .blue)
+            })
                 .ignoresSafeArea()
+            
+            // annotationItems: Collection of bus stops to display
+            // annotationContent: Styling
+            
             // need coordinate data for all the bus stops
             // create a annotation to display for each bus stop inside of Map{  }
+            
+            
+            // make a request to get all nearby stops
+            // store in array
+        }
+        .onAppear{
+            stopViewModel.getNearbyStops(lat: String(locationManager.location?.coordinate.latitude ?? 49.158527), lon: String(locationManager.location?.coordinate.longitude ?? -122.782270))
+            print(stopViewModel.nearbyStops)
         }
     }
 }

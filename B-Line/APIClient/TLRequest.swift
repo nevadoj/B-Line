@@ -107,11 +107,11 @@ final class TLRequest{
         return request
     }
     
-    func discoveryRequest() -> TLRequest{
+    func discoveryRequest(lat: String, lon: String) -> TLRequest{
         let request = TLRequest(
             endpoint: .v1,
             pathComponents: ["stops"],
-            queryParameters: [URLQueryItem(name: "apikey", value: apiKey), URLQueryItem(name: "lat", value: "49.187706"), URLQueryItem(name: "long", value: "-122.850060")],
+            queryParameters: [URLQueryItem(name: "apikey", value: apiKey), URLQueryItem(name: "lat", value: lat), URLQueryItem(name: "long", value: lon)],
             otherBase: true
         )
 

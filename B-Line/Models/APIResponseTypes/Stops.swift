@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stops: Codable, Hashable{
+struct Stops: Codable, Hashable, Identifiable{
     var StopNo: Int
     var Name: String
     var BayNo: String
@@ -19,4 +19,8 @@ struct Stops: Codable, Hashable{
     var WheelchairAccess: Int
     var Distance: Double
     var Routes: String
+    
+    var id: Int{
+        StopNo
+    }
 }

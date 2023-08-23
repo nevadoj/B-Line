@@ -40,7 +40,8 @@ extension LocationManager: CLLocationManagerDelegate {
 extension MKCoordinateRegion {
     static func defaultRegion() -> MKCoordinateRegion {
         MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
+//            center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
+            center: CLLocationCoordinate2D(latitude: 49.158527, longitude: -122.782270),
             span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     }
     

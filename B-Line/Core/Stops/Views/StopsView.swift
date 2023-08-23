@@ -45,8 +45,8 @@ struct StopsView: View {
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{
-//                            addStop.toggle()
-                            stopViewModel.sampleFetch()
+                            addStop.toggle()
+//                            stopViewModel.sampleFetch()
                         } label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.white)

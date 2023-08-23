@@ -21,7 +21,7 @@ class StopsViewModel: ObservableObject{
         }
     }
     @Published var savedStops: [Int : SavedStops] = [:]
-    
+    @Published var nearbyStops = [Stops]()
     
     init(){
         self.getStops()
@@ -30,18 +30,18 @@ class StopsViewModel: ObservableObject{
         }
     }
     
-    func sampleFetch(){
-        let request = TLRequest(endpoint: .v1, otherBase: false)
-        
-        TLService.shared.execute(request.discoveryRequest(), expecting: [Stops].self){ result in
-            switch result{
-            case .success(let model):
-                print(String(describing: model))
-            case .failure(let error):
-                print(String(describing: error))
-            }
-        }
-    }
+//    func sampleFetch(){
+//        let request = TLRequest(endpoint: .v1, otherBase: false)
+//
+//        TLService.shared.execute(request.discoveryRequest(), expecting: [Stops].self){ result in
+//            switch result{
+//            case .success(let model):
+//                print(String(describing: model))
+//            case .failure(let error):
+//                print(String(describing: error))
+//            }
+//        }
+//    }
     
     func addStop(stopID: String){
         let db = Firestore.firestore()
@@ -108,7 +108,6 @@ class StopsViewModel: ObservableObject{
                     switch estimateResult{
                     case .success(let estimateModel):
                         DispatchQueue.main.async {
-                            print(String(describing: estimateModel))
                             let saved = self.savedStops.contains{ key, value in
                                 return key == model.StopNo
                             }
@@ -136,6 +135,21 @@ class StopsViewModel: ObservableObject{
     func getStopEstimates(){
         for stop in self.stopsList{
             fetchStopAndEstimate(stopID: String(stop.StopNo))
+        }
+    }
+    
+    func getNearbyStops(lat: String, lon: String){
+        let request = TLRequest(endpoint: .v1, otherBase: false)
+        
+        TLService.shared.execute(request.discoveryRequest(lat: lat, lon: lon), expecting: [Stops].self){ result in
+            switch result{
+            case .success(let model):
+                DispatchQueue.main.async {
+                    self.nearbyStops = model
+                }
+            case .failure(let error):
+                print(String(describing: error))
+            }
         }
     }
 }
