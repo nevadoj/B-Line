@@ -140,8 +140,6 @@ class StopsViewModel: ObservableObject{
     
     func getNearbyStops(lat: String, lon: String){
         let request = TLRequest(endpoint: .v1, otherBase: false)
-        print(lat)
-        print(lon)
         TLService.shared.execute(request.discoveryRequest(lat: lat, lon: lon), expecting: [Stops].self){ result in
             switch result{
             case .success(let model):

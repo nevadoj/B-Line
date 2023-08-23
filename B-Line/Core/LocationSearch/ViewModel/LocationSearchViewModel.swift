@@ -13,6 +13,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Properties
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocationCoordinate: CLLocationCoordinate2D?
+    @Published var searchRegion = MKCoordinateRegion()
     
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
@@ -38,6 +39,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
             
             let coordinate = item.placemark.coordinate
             self.selectedLocationCoordinate = coordinate
+            self.searchRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), span: mapDefaults.defaultSpan)
         }
     }
     
