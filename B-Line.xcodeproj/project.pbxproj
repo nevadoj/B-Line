@@ -30,6 +30,7 @@
 		018F7E0F29A46329005D0E44 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0E29A46329005D0E44 /* LocationSearchViewModel.swift */; };
 		01A97D842A94745500E8C9A1 /* TLApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D832A94745500E8C9A1 /* TLApi.swift */; };
 		01A97D862A958D7A00E8C9A1 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D852A958D7A00E8C9A1 /* UserLocation.swift */; };
+		01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */; };
 		01B8BEC129A6B31B0031783C /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */; };
 		01CB9DD529B1B53B00145841 /* AddStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB9DD429B1B53B00145841 /* AddStopView.swift */; };
 		01CB9DD729B2BCD200145841 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */; };
@@ -71,6 +72,7 @@
 		018F7E0E29A46329005D0E44 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		01A97D832A94745500E8C9A1 /* TLApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLApi.swift; sourceTree = "<group>"; };
 		01A97D852A958D7A00E8C9A1 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStopView.swift; sourceTree = "<group>"; };
 		01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
 		01CB9DD429B1B53B00145841 /* AddStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopView.swift; sourceTree = "<group>"; };
 		01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,8 +155,8 @@
 		017ADF68299832EB00A4537E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
 				0149373429F7BD5300AF51F4 /* SavedStops.swift */,
+				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,6 +259,7 @@
 				01E3FBB8299C4E560062E4F2 /* StopsView.swift */,
 				017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */,
 				01CB9DD429B1B53B00145841 /* AddStopView.swift */,
+				01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
 				0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */,
 				01D9014F29A5E53600BBB103 /* LocationSearchMenuView.swift in Sources */,
+				01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */,
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				018F7E0D29A45D48005D0E44 /* StopsViewModel.swift in Sources */,

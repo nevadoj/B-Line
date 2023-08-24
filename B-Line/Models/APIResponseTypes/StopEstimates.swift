@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StopEstimates: Codable, Hashable, Equatable{
+struct StopEstimates: Codable, Hashable, Equatable, Identifiable{
     static func == (lhs: StopEstimates, rhs: StopEstimates) -> Bool {
         return lhs.RouteName == rhs.RouteName
     }
@@ -20,6 +20,10 @@ struct StopEstimates: Codable, Hashable, Equatable{
     var Direction: String
     var RouteMap: RouteMap
     var Schedules: [Schedule]
+    
+    var id: String{
+        RouteNo
+    }
 }
 
 struct Schedule: Codable, Hashable{

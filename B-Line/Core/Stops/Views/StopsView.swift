@@ -12,6 +12,8 @@ struct StopsView: View {
     @State var addStop = false
     @EnvironmentObject var stopViewModel: StopsViewModel
     
+    @State private var selectedStop: SavedStops?
+    
     init(){
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = UIColor.clear
@@ -27,26 +29,37 @@ struct StopsView: View {
             ScrollView{
                 ZStack{
                     VStack(alignment: .leading){
-                        ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, sched in
-                            ForEach(sched.Schedule, id: \.self){ bus in
+                        ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, stop in
+                            ForEach(stop.Schedule, id: \.self){ bus in
                                 // Get first entry from Schedules and display on view cell
                                 // Pass in bus into sheet view for detailed view
                                 
-                                StopViewCell(busNumber: bus.RouteNo, address: sched.BusStop.Name.capitalized, stopNumber: sched.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
+                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
                                     .padding(10)
+                                    .onTapGesture {
+                                        selectedStop = SavedStops(BusStop: stop.BusStop, Schedule: [bus])
+                                        print(bus.Schedules)
+                                    }
                             }
                         }
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
                     .background(Color("BPrimary"))
+                    .sheet(item: $selectedStop){ selectedStop in
+                        // detailed view
+                        NavigationView{
+                            DetailedStopView(stop: selectedStop.BusStop)
+                                .navigationTitle(selectedStop.Schedule.first?.RouteNo ?? "N/A")
+                        }
+                        .presentationDetents([.medium, .large])
+                    }
                 }
                 .navigationTitle("Stops")
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{
                             addStop.toggle()
-//                            stopViewModel.sampleFetch()
                         } label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.white)

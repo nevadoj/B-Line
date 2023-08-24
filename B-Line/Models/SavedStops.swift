@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct SavedStops: Codable, Hashable{
+struct SavedStops: Codable, Hashable, Identifiable{
     var BusStop: Stops
     var Schedule: [StopEstimates]
+    
+    var id: Int{
+        BusStop.id
+    }
 }
