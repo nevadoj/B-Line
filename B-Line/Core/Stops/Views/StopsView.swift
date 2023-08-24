@@ -38,7 +38,6 @@ struct StopsView: View {
                                     .padding(10)
                                     .onTapGesture {
                                         selectedStop = SavedStops(BusStop: stop.BusStop, Schedule: [bus])
-                                        print(bus.Schedules)
                                     }
                             }
                         }
@@ -49,8 +48,8 @@ struct StopsView: View {
                     .sheet(item: $selectedStop){ selectedStop in
                         // detailed view
                         NavigationView{
-                            DetailedStopView(stop: selectedStop.BusStop)
-                                .navigationTitle(selectedStop.Schedule.first?.RouteNo ?? "N/A")
+                            DetailedStopView(stop: selectedStop)
+//                                .navigationTitle(selectedStop.Schedule.first?.RouteNo ?? "N/A")
                         }
                         .presentationDetents([.medium, .large])
                     }
@@ -84,8 +83,8 @@ struct StopsView: View {
     }
 }
 
-struct StopsView_Previews: PreviewProvider {
-    static var previews: some View {
-        StopsView()
-    }
-}
+//struct StopsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StopsView()
+//    }
+//}
