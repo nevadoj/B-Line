@@ -28,9 +28,20 @@ extension Color {
 extension String{
     func dateFromString(inputStr: String) -> Date{
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
-        dateFormatter.dateFormat = "h:mma"
+        dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
+//        dateFormatter.dateFormat = "h:mma"
         return dateFormatter.date(from: inputStr) ?? Date()
+    }
+    
+    func timeFromString(inputStr: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
+        let date = dateFormatter.date(from: inputStr) ?? Date()
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "h:mma"
+        
+        return outputFormatter.string(from: date)
     }
 }
 

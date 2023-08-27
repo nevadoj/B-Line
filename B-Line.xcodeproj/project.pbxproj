@@ -31,6 +31,8 @@
 		01A97D842A94745500E8C9A1 /* TLApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D832A94745500E8C9A1 /* TLApi.swift */; };
 		01A97D862A958D7A00E8C9A1 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D852A958D7A00E8C9A1 /* UserLocation.swift */; };
 		01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */; };
+		01A97D8C2A9AC76400E8C9A1 /* LocationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */; };
+		01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */; };
 		01B8BEC129A6B31B0031783C /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */; };
 		01CB9DD529B1B53B00145841 /* AddStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB9DD429B1B53B00145841 /* AddStopView.swift */; };
 		01CB9DD729B2BCD200145841 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */; };
@@ -73,6 +75,8 @@
 		01A97D832A94745500E8C9A1 /* TLApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLApi.swift; sourceTree = "<group>"; };
 		01A97D852A958D7A00E8C9A1 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStopView.swift; sourceTree = "<group>"; };
+		01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationText.swift; sourceTree = "<group>"; };
+		01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesDisplay.swift; sourceTree = "<group>"; };
 		01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
 		01CB9DD429B1B53B00145841 /* AddStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopView.swift; sourceTree = "<group>"; };
 		01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				01E3FBBF299C535D0062E4F2 /* ExampleButtons.swift */,
 				01E3FBC1299C53660062E4F2 /* Utils.swift */,
 				01D9015029A5EED400BBB103 /* PrimaryButton.swift */,
+				01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */,
+				01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */,
+				01A97D8C2A9AC76400E8C9A1 /* LocationText.swift in Sources */,
 				018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
@@ -395,6 +402,7 @@
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
 				018F7E0D29A45D48005D0E44 /* StopsViewModel.swift in Sources */,
+				01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */,
 				018F7E0F29A46329005D0E44 /* LocationSearchViewModel.swift in Sources */,
 				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,

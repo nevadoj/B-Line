@@ -26,7 +26,7 @@ struct StopEstimates: Codable, Hashable, Equatable, Identifiable{
     }
 }
 
-struct Schedule: Codable, Hashable{
+struct Schedule: Codable, Hashable, Identifiable{
     var Pattern: String
     var Destination: String
     var ExpectedLeaveTime: String
@@ -37,6 +37,10 @@ struct Schedule: Codable, Hashable{
     var AddedTrip: Bool
     var AddedStop: Bool
     var LastUpdate: String // Last updated time of the trip
+    
+    var id: String{
+        ExpectedLeaveTime
+    }
 }
 
 struct RouteMap: Codable{
