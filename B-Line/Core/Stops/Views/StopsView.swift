@@ -31,9 +31,6 @@ struct StopsView: View {
                     VStack(alignment: .leading){
                         ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, stop in
                             ForEach(stop.Schedule, id: \.self){ bus in
-                                // Get first entry from Schedules and display on view cell
-                                // Pass in bus into sheet view for detailed view
-                                
                                 StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
                                     .padding(10)
                                     .onTapGesture {
@@ -46,10 +43,8 @@ struct StopsView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color("BPrimary"))
                     .sheet(item: $selectedStop){ selectedStop in
-                        // detailed view
                         NavigationView{
                             DetailedStopView(stop: selectedStop)
-//                                .navigationTitle(selectedStop.Schedule.first?.RouteNo ?? "N/A")
                         }
                         .presentationDetents([.medium, .large])
                     }

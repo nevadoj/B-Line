@@ -22,6 +22,7 @@ class StopsViewModel: ObservableObject{
     }
     @Published var savedStops: [Int : SavedStops] = [:]
     @Published var nearbyStops = [Stops]()
+    @Published var discoverStopEstimates = [StopEstimates]()
     
     init(){
         self.getStops()
@@ -149,6 +150,22 @@ class StopsViewModel: ObservableObject{
                 }
             case .failure(let error):
                 print("Failed to get nearby stops:" + String(describing: error))
+            }
+        }
+    }
+    
+    func fetchDiscoverEstimate(stopID: String){
+        let request = TLRequest(endpoint: .stops, otherBase: false)
+        
+        TLService.shared.execute(request.estimateRequest(stopID), expecting: [StopEstimates].self){ estimateResult in
+            switch estimateResult{
+            case .success(let estimateModel):
+                DispatchQueue.main.async {
+                        self.discoverStopEstimates.removeAll()
+                        self.discoverStopEstimates = estimateModel
+                    }
+            case .failure(let estimateError):
+                print(String(describing: estimateError))
             }
         }
     }

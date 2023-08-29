@@ -14,31 +14,41 @@ struct MapViewMain: View {
     @EnvironmentObject var userLocationViewModel: LocationViewModel
     
     @Binding var defaultLocation: Bool
+    @State private var selectedStop: Stops?
     var body: some View {
         ZStack{
             Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
                 showsUserLocation: true,
                 annotationItems: stopViewModel.nearbyStops,
                 annotationContent: { stop in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude), tint: .blue)
-            })
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude)){
+                        AnnotationView()
+                            .shadow(radius: 10)
+                            .onTapGesture {
+                                selectedStop = stop
+                            }
+                    }
+                }
+            )
+//            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
+//                showsUserLocation: true,
+//                annotationItems: stopViewModel.nearbyStops,
+//                annotationContent: { stop in
+//                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude), tint: .blue)
+//            })
                 .ignoresSafeArea()
-            
-            // annotationItems: Collection of bus stops to display
-            // annotationContent: Styling
-            
-            // need coordinate data for all the bus stops
-            // create a annotation to display for each bus stop inside of Map{  }
-            
-            
-            // make a request to get all nearby stops
-            // store in array
         }
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
                     .latitude) : String(format: "%.6f", locationViewModel.searchRegion.center.latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.longitude) : String(format: "%.6f", locationViewModel.searchRegion.center.longitude))
             }
+        }
+        .sheet(item: $selectedStop){ stop in
+            NavigationView{
+                DiscoverStopView(stop: stop)
+            }
+            .presentationDetents([.medium])
         }
     }
 }

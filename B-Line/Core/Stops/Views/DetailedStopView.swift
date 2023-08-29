@@ -53,7 +53,7 @@ struct DetailedStopView: View {
                                 .padding(.vertical)
                             
                             // Schedule
-                            Text("Schedules")
+                            Text("Schedule")
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 30)
                                 .padding(.vertical)

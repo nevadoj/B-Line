@@ -33,6 +33,8 @@
 		01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */; };
 		01A97D8C2A9AC76400E8C9A1 /* LocationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */; };
 		01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */; };
+		01A97D902A9D68C100E8C9A1 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8F2A9D68C100E8C9A1 /* AnnotationView.swift */; };
+		01A97D922A9D70E300E8C9A1 /* DiscoverStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D912A9D70E300E8C9A1 /* DiscoverStopView.swift */; };
 		01B8BEC129A6B31B0031783C /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */; };
 		01CB9DD529B1B53B00145841 /* AddStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB9DD429B1B53B00145841 /* AddStopView.swift */; };
 		01CB9DD729B2BCD200145841 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */; };
@@ -77,6 +79,8 @@
 		01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStopView.swift; sourceTree = "<group>"; };
 		01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationText.swift; sourceTree = "<group>"; };
 		01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesDisplay.swift; sourceTree = "<group>"; };
+		01A97D8F2A9D68C100E8C9A1 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		01A97D912A9D70E300E8C9A1 /* DiscoverStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverStopView.swift; sourceTree = "<group>"; };
 		01B8BEC029A6B31B0031783C /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
 		01CB9DD429B1B53B00145841 /* AddStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopView.swift; sourceTree = "<group>"; };
 		01CB9DD629B2BCD200145841 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				01D9015029A5EED400BBB103 /* PrimaryButton.swift */,
 				01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */,
 				01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */,
+				01A97D8F2A9D68C100E8C9A1 /* AnnotationView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */,
 				01CB9DD429B1B53B00145841 /* AddStopView.swift */,
 				01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */,
+				01A97D912A9D70E300E8C9A1 /* DiscoverStopView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
+				01A97D902A9D68C100E8C9A1 /* AnnotationView.swift in Sources */,
 				018F7E0529A35DD8005D0E44 /* StopEstimates.swift in Sources */,
 				011C546B29A8236C0015AE2F /* MapViewMain.swift in Sources */,
 				018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */,
@@ -398,6 +405,7 @@
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
 				0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */,
 				01D9014F29A5E53600BBB103 /* LocationSearchMenuView.swift in Sources */,
+				01A97D922A9D70E300E8C9A1 /* DiscoverStopView.swift in Sources */,
 				01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */,
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
