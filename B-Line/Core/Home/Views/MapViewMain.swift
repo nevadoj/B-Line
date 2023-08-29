@@ -14,18 +14,19 @@ struct MapViewMain: View {
     @EnvironmentObject var userLocationViewModel: LocationViewModel
     
     @Binding var defaultLocation: Bool
-    @State private var selectedStop: Stops?
+    @State private var selectedStop: SavedStops?
     var body: some View {
         ZStack{
             Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
                 showsUserLocation: true,
                 annotationItems: stopViewModel.nearbyStops,
                 annotationContent: { stop in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude)){
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
                         AnnotationView()
                             .shadow(radius: 10)
                             .onTapGesture {
                                 selectedStop = stop
+                                print(stop)
                             }
                     }
                 }
@@ -53,8 +54,8 @@ struct MapViewMain: View {
     }
 }
 
-struct MapViewMain_Previews: PreviewProvider {
-    static var previews: some View {
-        MapViewMain(defaultLocation: .constant(true))
-    }
-}
+//struct MapViewMain_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapViewMain(defaultLocation: .constant(true))
+//    }
+//}

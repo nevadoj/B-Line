@@ -21,8 +21,9 @@ class StopsViewModel: ObservableObject{
         }
     }
     @Published var savedStops: [Int : SavedStops] = [:]
-    @Published var nearbyStops = [Stops]()
+//    @Published var nearbyStops = [Stops]()
     @Published var discoverStopEstimates = [StopEstimates]()
+    @Published var nearbyStops = [SavedStops]()
     
     init(){
         self.getStops()
@@ -141,13 +142,28 @@ class StopsViewModel: ObservableObject{
     
     func getNearbyStops(lat: String, lon: String){
         let request = TLRequest(endpoint: .v1, otherBase: false)
+        self.nearbyStops.removeAll()
+        
         TLService.shared.execute(request.discoveryRequest(lat: lat, lon: lon), expecting: [Stops].self){ result in
             switch result{
             case .success(let model):
-                DispatchQueue.main.async {
-                    self.nearbyStops.removeAll()
-                    self.nearbyStops = model
+                let estimateRequest = TLRequest(endpoint: .stops, otherBase: false)
+                for stop in model{
+                    TLService.shared.execute(estimateRequest.estimateRequest(String(stop.StopNo)), expecting: [StopEstimates].self){ estimateResult in
+                        switch estimateResult{
+                        case .success(let estimateModel):
+                            DispatchQueue.main.async {
+                                self.nearbyStops.append(SavedStops(BusStop: stop, Schedule: estimateModel))
+                            }
+                        case .failure(let estimateError):
+                            print(String(describing: estimateError))
+                        }
+                    }
                 }
+//                DispatchQueue.main.async {
+//                    self.nearbyStops.removeAll()
+//                    self.nearbyStops = model
+//                }
             case .failure(let error):
                 print("Failed to get nearby stops:" + String(describing: error))
             }
