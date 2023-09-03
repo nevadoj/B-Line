@@ -28,7 +28,7 @@ struct DiscoverStopView: View {
                                 .padding(.top, 45)
                                 .padding(.bottom, 1)
                             
-                            LocationText(imageName: "at", locationName: stop.BusStop.Name.capitalized, color: .white, font: .title2)
+                            LocationText(imageName: "mappin", locationName: stop.BusStop.Name.capitalized, color: .white, font: .title2)
                                 .padding(.horizontal, 30)
                             
 //                            let arrivalTime = Int(stop.Schedule[currentTab].Schedules.first?.ExpectedCountdown ?? -99)
@@ -54,14 +54,14 @@ struct DiscoverStopView: View {
                         Spacer()
                     }
                     Picker("Bus Options", selection: $currentTab){
-                        let routes = stop.BusStop.Routes.components(separatedBy: ", ")
+                        let routes = stop.Schedule
                         ForEach(routes.indices, id: \.self){ index in
-                            Text(routes[index])
+                            Text(routes[index].RouteNo)
                                 .tag(index)
                         }
                     }
                     .pickerStyle(.segmented)
-                    .frame(maxWidth: UIScreen.main.bounds.width / 2)
+                    .frame(maxWidth: (stop.Schedule.count < 4) ? (UIScreen.main.bounds.width / 2) : (UIScreen.main.bounds.width / 1.2))
                     .padding(.bottom, 10)
                     .shadow(color: Color("BSecondary").opacity(1), radius: 10, x:4, y:6)
                     
@@ -101,6 +101,10 @@ struct DiscoverStopView: View {
 
 // TODO: Fix picker display to correspond with proper bus #
 // TODO: Fix timeFromString to properly parse a.m. times (i.e. tomorrow times)
+    // this bug happens because the API returns either h:mma or h:mma yyyy-MM-dd
+// TODO: Handle negative minutes showing
+// TODO: real-time updates?
+// TODO: maybe re-write getNearbyStops so that we don't waste estimate requests 
 
 struct DiscoverStopView_Previews: PreviewProvider {
     static var previews: some View {

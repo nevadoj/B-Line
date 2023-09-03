@@ -17,26 +17,28 @@ struct MapViewMain: View {
     @State private var selectedStop: SavedStops?
     var body: some View {
         ZStack{
-            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
-                showsUserLocation: true,
-                annotationItems: stopViewModel.nearbyStops,
-                annotationContent: { stop in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
-                        AnnotationView()
-                            .shadow(radius: 10)
-                            .onTapGesture {
-                                selectedStop = stop
-                                print(stop)
-                            }
-                    }
-                }
-            )
 //            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
 //                showsUserLocation: true,
 //                annotationItems: stopViewModel.nearbyStops,
 //                annotationContent: { stop in
-//                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.Latitude, longitude: stop.Longitude), tint: .blue)
-//            })
+//                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
+//                        AnnotationView()
+//                            .shadow(radius: 10)
+//                            .onTapGesture {
+//                                selectedStop = stop
+//                                print(stop)
+//                            }
+//                    }
+//                }
+//            )
+            
+            // No published view errors
+            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
+                showsUserLocation: true,
+                annotationItems: stopViewModel.nearbyStops,
+                annotationContent: { stop in
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+            })
                 .ignoresSafeArea()
         }
         .onAppear{

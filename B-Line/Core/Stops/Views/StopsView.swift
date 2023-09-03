@@ -9,10 +9,7 @@ import SwiftUI
 
 struct StopsView: View {
     
-    @State var addStop = false
-    @EnvironmentObject var stopViewModel: StopsViewModel
-    
-    @State private var selectedStop: SavedStops?
+    @State private var showStops: Bool = false
     
     init(){
         let appearance = UINavigationBarAppearance()
@@ -25,55 +22,17 @@ struct StopsView: View {
     }
     
     var body: some View {
-        NavigationView{
-            ScrollView{
-                ZStack{
-                    VStack(alignment: .leading){
-                        ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, stop in
-                            ForEach(stop.Schedule, id: \.self){ bus in
-                                StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
-                                    .padding(10)
-                                    .onTapGesture {
-                                        selectedStop = SavedStops(BusStop: stop.BusStop, Schedule: [bus])
-                                    }
-                            }
-                        }
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(Color("BPrimary"))
-                    .sheet(item: $selectedStop){ selectedStop in
-                        NavigationView{
-                            DetailedStopView(stop: selectedStop)
-                        }
-                        .presentationDetents([.medium, .large])
-                    }
-                }
-                .navigationTitle("Stops")
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button{
-                            addStop.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                        }
-                        .sheet(isPresented: $addStop){
-                            NavigationView{
-                                AddStopView()
-                                    .navigationTitle("Add Stop")
-                            }
-                            .presentationDetents([.height(250)])
-                        }
-                    }
-                }
+        ZStack{
+            if(showStops){
+                SavedStopsView()
             }
-            .frame(maxWidth: .infinity)
-            .background(Color("BPrimary"))
+            else{
+                AuthView()
+            }
         }
         .onAppear{
-            stopViewModel.getStopEstimates()
+            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+            self.showStops = authUser != nil
         }
     }
 }
