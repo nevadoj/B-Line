@@ -26,19 +26,28 @@ struct AuthDataResultModel{
 }
 
 protocol UserAuth {
-    func submitAuth()
+    func submitAuth(email: String, password: String) async throws -> AuthDataResultModel
+    var flowText: String { get }
 }
 
 class AuthenticationSignIn: UserAuth{
-    func submitAuth() {
-        <#code#>
+    @discardableResult
+    func submitAuth(email: String, password: String) async throws -> AuthDataResultModel {
+        let result = try await Auth.auth().signIn(withEmail: email, password: password)
+        return AuthDataResultModel(user: result.user)
     }
+    
+    var flowText = "Login"
 }
 
 class AuthenticationCreateAccount: UserAuth{
-    func submitAuth() {
-        <#code#>
+    @discardableResult
+    func submitAuth(email: String, password: String) async throws -> AuthDataResultModel{
+        let result = try await Auth.auth().createUser(withEmail: email, password: password)
+        return AuthDataResultModel(user: result.user)
     }
+    
+    var flowText = "Create Account"
 }
 
 class AuthenticationManager{

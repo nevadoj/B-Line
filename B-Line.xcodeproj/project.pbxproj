@@ -53,6 +53,8 @@
 		01F0C9992AA28AD600CCEF2B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9982AA28AD600CCEF2B /* AuthenticationManager.swift */; };
 		01F0C99B2AA4239600CCEF2B /* SavedStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99A2AA4239600CCEF2B /* SavedStopsView.swift */; };
 		01F0C99D2AA435BF00CCEF2B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99C2AA435BE00CCEF2B /* AuthView.swift */; };
+		01F0C99F2AA51F5B00CCEF2B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */; };
+		01F0C9A12AA5373700CCEF2B /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A02AA5373600CCEF2B /* AuthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		01F0C9982AA28AD600CCEF2B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		01F0C99A2AA4239600CCEF2B /* SavedStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStopsView.swift; sourceTree = "<group>"; };
 		01F0C99C2AA435BE00CCEF2B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		01F0C9A02AA5373600CCEF2B /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 				01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */,
 				01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */,
 				01A97D8F2A9D68C100E8C9A1 /* AnnotationView.swift */,
+				01F0C9A02AA5373600CCEF2B /* AuthButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				01E3FBBD299C4EB30062E4F2 /* MapView.swift */,
 				011C546A29A8236C0015AE2F /* MapViewMain.swift */,
 				01F0C99C2AA435BE00CCEF2B /* AuthView.swift */,
+				01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,12 +422,14 @@
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
 				01A97D902A9D68C100E8C9A1 /* AnnotationView.swift in Sources */,
 				018F7E0529A35DD8005D0E44 /* StopEstimates.swift in Sources */,
+				01F0C9A12AA5373700CCEF2B /* AuthButton.swift in Sources */,
 				011C546B29A8236C0015AE2F /* MapViewMain.swift in Sources */,
 				018F7DFE29A330FD005D0E44 /* TLRequest.swift in Sources */,
 				01CB9DD529B1B53B00145841 /* AddStopView.swift in Sources */,
 				018F7DF929A32A1F005D0E44 /* Stops.swift in Sources */,
 				018F7E0729A35DF5005D0E44 /* Buses.swift in Sources */,
 				018F7E0029A33103005D0E44 /* TLEndpoint.swift in Sources */,
+				01F0C99F2AA51F5B00CCEF2B /* LoginView.swift in Sources */,
 				01E3FBC0299C535D0062E4F2 /* ExampleButtons.swift in Sources */,
 				0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */,
 				01F0C99B2AA4239600CCEF2B /* SavedStopsView.swift in Sources */,

@@ -14,49 +14,53 @@ struct AuthView: View {
     
     // TODO: Separate views for signing in / creating account (by different buttons)
     
+    init(){
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = UIColor.clear
+        appearance.backgroundColor = UIColor(Color("BPrimary"))
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
     var body: some View {
-        VStack{
-            Text("Sign in to view saved stops")
-                .foregroundColor(.white)
-                .fontWeight(.semibold)
-                .font(.headline)
-                .padding()
-            VStack(alignment: .leading){
-                Text("E-mail")
-                    .font(.callout)
-                    .foregroundColor(Color(hex: "DCDCDC"))
-                    .frame(maxWidth: UIScreen.main.bounds.width / 5.7)
-                TextField("", text: $email)
-                    .padding()
-                    .background(Color("BSecondary").opacity(0.5))
-                    .cornerRadius(20)
-                    .frame(maxWidth: UIScreen.main.bounds.width / 1.2)
-                    .foregroundColor(.white)
-                
-                Text("Password")
-                    .font(.callout)
-                    .foregroundColor(Color(hex: "DCDCDC"))
-                    .frame(maxWidth: UIScreen.main.bounds.width / 4)
-                    .padding(.top)
-                SecureField("", text: $password)
-                    .padding()
-                    .background(Color("BSecondary").opacity(0.5))
-                    .cornerRadius(20)
-                    .frame(maxWidth: UIScreen.main.bounds.width / 1.2)
-                    .foregroundColor(.white)
-            }
+        NavigationStack{
+            ZStack{
+                Color("BPrimary").ignoresSafeArea()
+                VStack(alignment: .center){
+                    Text("Sign in to view saved stops")
+                        .foregroundColor(.white)
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                        .padding()
+                    
+                    NavigationLink{
+                        LoginView(authMethod: AuthenticationSignIn())
+                            .navigationTitle("Login")
+                            .toolbarRole(.editor)
+                    } label: {
+                        AuthButton(buttonLabel: "Login")
+                            .padding()
+                    }
+                    
+                    NavigationLink{
+                        LoginView(authMethod: AuthenticationCreateAccount())
+                            .navigationTitle("Create Account")
+                            .toolbarRole(.editor)
+                    } label: {
+                        AuthButton(buttonLabel: "Create Account")
+                    }
+                }
+            }            
         }
-        .navigationTitle("Stops")
-        .frame(maxWidth: .infinity)
-        .background(Color("BPrimary"))
+        .tint(.white)
     }
 }
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
-            Color("BPrimary")
-                .ignoresSafeArea()
             AuthView()
         }
     }
