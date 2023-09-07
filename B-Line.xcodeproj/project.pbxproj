@@ -55,6 +55,7 @@
 		01F0C99D2AA435BF00CCEF2B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99C2AA435BE00CCEF2B /* AuthView.swift */; };
 		01F0C99F2AA51F5B00CCEF2B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */; };
 		01F0C9A12AA5373700CCEF2B /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A02AA5373600CCEF2B /* AuthButton.swift */; };
+		01F0C9A32AA989E000CCEF2B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A22AA989E000CCEF2B /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		01F0C99C2AA435BE00CCEF2B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01F0C9A02AA5373600CCEF2B /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		01F0C9A22AA989E000CCEF2B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				017ADF732998352B00A4537E /* LocationManager.swift */,
 				01A97D852A958D7A00E8C9A1 /* UserLocation.swift */,
 				01F0C9982AA28AD600CCEF2B /* AuthenticationManager.swift */,
+				01F0C9A22AA989E000CCEF2B /* UserManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				01E3FBBE299C4EB30062E4F2 /* MapView.swift in Sources */,
 				01A97D8C2A9AC76400E8C9A1 /* LocationText.swift in Sources */,
 				018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */,
+				01F0C9A32AA989E000CCEF2B /* UserManager.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
 				01A97D902A9D68C100E8C9A1 /* AnnotationView.swift in Sources */,

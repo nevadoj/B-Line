@@ -21,16 +21,8 @@ class StopsViewModel: ObservableObject{
         }
     }
     @Published var savedStops: [Int : SavedStops] = [:]
-//    @Published var nearbyStops = [Stops]()
     @Published var discoverStopEstimates = [StopEstimates]()
     @Published var nearbyStops = [SavedStops]()
-    
-    init(){
-        self.getStops()
-        for stop in self.stopsList{
-            fetchStopAndEstimate(stopID: String(stop.StopNo))
-        }
-    }
     
 //    func sampleFetch(){
 //        let request = TLRequest(endpoint: .v1, otherBase: false)
@@ -49,12 +41,21 @@ class StopsViewModel: ObservableObject{
         let db = Firestore.firestore()
         let request = TLRequest(endpoint: .stops, otherBase: false)
         
+        var userID: String = ""
+        do{
+            let authData = try AuthenticationManager.shared.getAuthenticatedUser()
+            userID = authData.uid
+        }
+        catch{
+            print("Error getting user \(error)")
+        }
+        
         TLService.shared.execute(request.stopRequest(stopID), expecting: Stops.self){ result in
             switch result{
             case .success(let model):
-                db.collection("stops").addDocument(data: ["StopNo":model.StopNo, "Name":model.Name, "BayNo":model.BayNo, "City":model.City, "OnStreet":model.OnStreet, "AtStreet":model.AtStreet, "Latitude":model.Latitude, "Longitude":model.Longitude, "WheelchairAccess":model.WheelchairAccess, "Distance":model.Distance, "Routes":model.Routes]){ error in
+                db.collection("users").document(userID).collection("stops").addDocument(data: ["StopNo":model.StopNo, "Name":model.Name, "BayNo":model.BayNo, "City":model.City, "OnStreet":model.OnStreet, "AtStreet":model.AtStreet, "Latitude":model.Latitude, "Longitude":model.Longitude, "WheelchairAccess":model.WheelchairAccess, "Distance":model.Distance, "Routes":model.Routes]){ error in
                     if error == nil{
-                        self.getStops()
+                        self.getStops(addNew: true)
                     }
                     else{
                         print(String(describing: error))
@@ -69,35 +70,48 @@ class StopsViewModel: ObservableObject{
     }
     
     
-    func getStops(){
-        let db = Firestore.firestore()
-        
-        db.collection("stops").getDocuments{ snapshot, error in
-            if(error == nil){
-                if let snapshot = snapshot {
-                    self.stopsList = snapshot.documents.map{ d in
-                        // return Stop object
-                        return Stops(StopNo: d["StopNo"] as? Int ?? 0,
-                                     Name: d["Name"] as? String ?? "Street",
-                                     BayNo: d["BayNo"] as? String ?? "N/A",
-                                     City: d["City"] as? String ?? "City",
-                                     OnStreet: d["OnStreet"] as? String ?? "OnStreet",
-                                     AtStreet: d["AtStreet"] as? String ?? "AtStreet",
-                                     Latitude: d["Latitude"] as? Double ?? 0.0,
-                                     Longitude: d["Longitude"] as? Double ?? 0.0,
-                                     WheelchairAccess: d["WheelchairAccess"] as? Int ?? 0,
-                                     Distance: d["Distance"] as? Double ?? 0.0,
-                                     Routes: d["Routes"] as? String ?? "Routes")
+    func getStops(addNew: Bool){
+        if(stopsList.isEmpty || addNew){
+            let db = Firestore.firestore()
+            
+            var userID: String = ""
+            do{
+                let authData = try AuthenticationManager.shared.getAuthenticatedUser()
+                userID = authData.uid
+            }
+            catch{
+                print("Error getting user \(error)")
+            }
+            
+            db.collection("users").document(userID).collection("stops").getDocuments{ snapshot, error in
+                if(error == nil){
+                    if let snapshot = snapshot {
+                        self.stopsList = snapshot.documents.map{ d in
+                            // return Stop object
+                            return Stops(StopNo: d["StopNo"] as? Int ?? 0,
+                                         Name: d["Name"] as? String ?? "Street",
+                                         BayNo: d["BayNo"] as? String ?? "N/A",
+                                         City: d["City"] as? String ?? "City",
+                                         OnStreet: d["OnStreet"] as? String ?? "OnStreet",
+                                         AtStreet: d["AtStreet"] as? String ?? "AtStreet",
+                                         Latitude: d["Latitude"] as? Double ?? 0.0,
+                                         Longitude: d["Longitude"] as? Double ?? 0.0,
+                                         WheelchairAccess: d["WheelchairAccess"] as? Int ?? 0,
+                                         Distance: d["Distance"] as? Double ?? 0.0,
+                                         Routes: d["Routes"] as? String ?? "Routes")
+                        }
                     }
                 }
-            }
-            else{
-                // handle error
-                print(String(describing: error))
-                return
+                else{
+                    // handle error
+                    print(String(describing: error))
+                    return
+                }
             }
         }
     }
+    
+    // TODO: RemoveStops -- on signout of account, remove saved stops in list -> incase another user signs in 
     
     func fetchStopAndEstimate(stopID: String){
         let request = TLRequest(endpoint: .stops, otherBase: false)

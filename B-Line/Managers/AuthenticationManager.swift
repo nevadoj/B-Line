@@ -44,6 +44,7 @@ class AuthenticationCreateAccount: UserAuth{
     @discardableResult
     func submitAuth(email: String, password: String) async throws -> AuthDataResultModel{
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
+        try await UserManager.shared.createNewUser(auth: AuthDataResultModel(user: result.user))
         return AuthDataResultModel(user: result.user)
     }
     

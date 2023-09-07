@@ -53,6 +53,14 @@ struct SavedStopsView: View {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{
                             addStop.toggle()
+//                            Task{
+//                                do{
+//                                    try AuthenticationManager.shared.signOut()
+//                                }
+//                                catch{
+//                                    print("Error logging out: \(error)")
+//                                }
+//                            }
                         } label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.white)
@@ -72,6 +80,8 @@ struct SavedStopsView: View {
             .background(Color("BPrimary"))
         }
         .onAppear{
+//            stopViewModel.getStopEstimates()
+            stopViewModel.getStops(addNew: false)
             stopViewModel.getStopEstimates()
         }
     }
