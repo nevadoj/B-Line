@@ -27,7 +27,7 @@ struct StopsView: View {
                 SavedStopsView()
             }
             else{
-                AuthView()
+                AuthView(showStops: $showStops)
             }
         }
         .onAppear{

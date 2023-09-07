@@ -11,10 +11,11 @@ struct AuthView: View {
     
     @State private var email = ""
     @State private var password = ""
+    @Binding var showStops: Bool
+    
     
     // TODO: Separate views for signing in / creating account (by different buttons)
-    
-    init(){
+    init(showStops: Binding<Bool>){
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = UIColor.clear
         appearance.backgroundColor = UIColor(Color("BPrimary"))
@@ -22,7 +23,10 @@ struct AuthView: View {
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        _showStops = showStops
     }
+    
+    
     
     var body: some View {
         NavigationStack{
@@ -36,7 +40,7 @@ struct AuthView: View {
                         .padding()
                     
                     NavigationLink{
-                        LoginView(authMethod: AuthenticationSignIn())
+                        LoginView(showStops: $showStops, authMethod: AuthenticationSignIn())
                             .navigationTitle("Login")
                             .toolbarRole(.editor)
                     } label: {
@@ -45,7 +49,7 @@ struct AuthView: View {
                     }
                     
                     NavigationLink{
-                        LoginView(authMethod: AuthenticationCreateAccount())
+                        LoginView(showStops: $showStops, authMethod: AuthenticationCreateAccount())
                             .navigationTitle("Create Account")
                             .toolbarRole(.editor)
                     } label: {
@@ -61,7 +65,7 @@ struct AuthView: View {
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
-            AuthView()
+            AuthView(showStops: .constant(false))
         }
     }
 }

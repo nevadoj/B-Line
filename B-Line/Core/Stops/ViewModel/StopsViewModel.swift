@@ -69,7 +69,6 @@ class StopsViewModel: ObservableObject{
     }
     
     
-    // TODO: Just fetch a stopID string from DB instead of a Stops struct
     func getStops(){
         let db = Firestore.firestore()
         

@@ -11,6 +11,11 @@ struct LoginView: View {
     
     @State private var email = ""
     @State private var password = ""
+    @State private var emailFill = false
+    @State private var passwordFill = false
+    
+    @Environment(\.dismiss) var dismiss
+    @Binding var showStops: Bool
     
     let authMethod: UserAuth
     
@@ -33,6 +38,12 @@ struct LoginView: View {
                             .background(Color("BSecondary").opacity(0.5))
                             .cornerRadius(20)
                             .foregroundColor(.white)
+                            .onChange(of: email){ email in
+                                emailFill = true
+                                if(email.isEmpty){
+                                    emailFill = false
+                                }
+                            }
                         Spacer()
                     }
                     
@@ -51,19 +62,37 @@ struct LoginView: View {
                             .background(Color("BSecondary").opacity(0.5))
                             .cornerRadius(20)
                             .foregroundColor(.white)
+                            .onChange(of: password){ password in
+                                passwordFill = true
+                                if(password.isEmpty){
+                                    passwordFill = false
+                                }
+                            }
                         Spacer()
                     }
                     
-                    VStack(alignment: .center){
-                        HStack(alignment: .center){
-                            Spacer()
-                            Button{
-                                
-                            } label: {
-                                AuthButton(buttonLabel: authMethod.flowText)
-                                    .padding()
+                    if(emailFill && passwordFill){
+                        VStack(alignment: .center){
+                            HStack(alignment: .center){
+                                Spacer()
+                                Button{
+                                    Task{
+                                        do{
+                                            let _ = try await authMethod.submitAuth(email: email, password: password)
+                                            // dismiss the view after
+                                            showStops = true
+                                            dismiss()
+                                        }
+                                        catch{
+                                            print("Error authenticating user: \(error)")
+                                        }
+                                    }
+                                } label: {
+                                    AuthButton(buttonLabel: authMethod.flowText)
+                                        .padding()
+                                }
+                                Spacer()
                             }
-                            Spacer()
                         }
                     }
                 }
@@ -74,6 +103,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(authMethod: AuthenticationSignIn())
+        LoginView(showStops: .constant(false), authMethod: AuthenticationSignIn())
     }
 }
