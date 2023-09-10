@@ -23,7 +23,6 @@ class StopsViewModel: ObservableObject{
     @Published var nearbyStops = [SavedStops]()
     
     let BASE_URL = "https://api.translink.ca/rttiapi/v1"
-    let BASE_URL2 = "https://api.translink.ca/rttiapi"
 //    func sampleFetch(){
 //        let request = TLRequest(endpoint: .v1, otherBase: false)
 //
@@ -190,8 +189,6 @@ class StopsViewModel: ObservableObject{
     
     @MainActor
     func fetchStopAndEstimateAsync(stopID: String) async throws{
-        let request = TLRequest(endpoint: .stops, otherBase: false)
-        
         do{
             guard let stopUrl = URL(string: "\(BASE_URL)/stops/\(stopID)?apikey=\(apiKey)") else {
                 throw StopError.invalidURL
@@ -201,8 +198,8 @@ class StopsViewModel: ObservableObject{
                 throw StopError.invalidURL
             }
             
-            var stopRequest = makeURLRequest(url: stopUrl)
-            var estimateRequest = makeURLRequest(url: estimateUrl)
+            let stopRequest = makeURLRequest(url: stopUrl)
+            let estimateRequest = makeURLRequest(url: estimateUrl)
             
             // API Call for stop
             let (stopData, stopResponse) = try await URLSession.shared.data(for: stopRequest)
@@ -274,6 +271,45 @@ class StopsViewModel: ObservableObject{
         }
     }
     
+    @MainActor // works but map is not interactable while markers are loading
+    func getNearbyStopsAsync(lat: String, lon: String) async throws {
+        self.nearbyStops.removeAll()
+        do{
+            guard let stopUrl = URL(string: "\(BASE_URL)/stops?apikey=\(apiKey)&lat=\(lat)&long=\(lon)") else { throw StopError.invalidURL }
+            
+            let stopRequest = makeURLRequest(url: stopUrl)
+            
+            let (stopData, stopResponse) = try await URLSession.shared.data(for: stopRequest)
+            guard (stopResponse as? HTTPURLResponse)?.statusCode == 200 else {
+                throw StopError.serverError
+            }
+            guard let stops = try? JSONDecoder().decode([Stops].self, from: stopData) else { throw StopError.invalidData }
+            
+            for stop in stops{
+                guard let estimateUrl = URL(string: "\(BASE_URL)/stops/\(stop.StopNo)/estimates?apikey=\(apiKey)") else{
+                    throw StopError.invalidURL
+                }
+                let estimateRequest = makeURLRequest(url: estimateUrl)
+                
+                let (estimateData, estimateResponse) = try await URLSession.shared.data(for: estimateRequest)
+                guard (estimateResponse as? HTTPURLResponse)?.statusCode == 200 else{
+                    throw EstimateError.serverError
+                }
+                guard let estimate = try? JSONDecoder().decode([StopEstimates].self, from: estimateData) else { throw EstimateError.invalidData }
+                
+                self.nearbyStops.append(SavedStops(BusStop: stop, Schedule: estimate))
+            }
+        }
+        catch{
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+
+    func getNearbyStopsTask(lat: String, lon: String){
+        Task(priority: .high){
+            try await getNearbyStopsAsync(lat: lat, lon: lon)
+        }
+    }
     
     // TODO: Update with URLSession async & make main actor
     func fetchDiscoverEstimate(stopID: String){

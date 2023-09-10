@@ -19,7 +19,7 @@ enum StopError: Error, LocalizedError{
         case .invalidURL:
             return "The URL is invalid."
         case .serverError:
-            return "There was an error with the server. Please try again."
+            return "There was an error with the server retreiving the stop. Please try again."
         case .invalidData:
             return "The data is invalid."
         case .unknown(let error):
