@@ -15,9 +15,7 @@ class StopsViewModel: ObservableObject{
     // create Stop list variable and let the view access it
     @Published var stopsList = [Stops](){
         didSet{
-            for stop in self.stopsList{
-                fetchStopAndEstimate(stopID: String(stop.StopNo))
-            }
+            getStopEstimates()
         }
     }
     @Published var savedStops: [Int : SavedStops] = [:]
@@ -190,9 +188,61 @@ class StopsViewModel: ObservableObject{
         }
     }
     
+    @MainActor
+    func fetchStopAndEstimateAsync(stopID: String) async throws{
+        let request = TLRequest(endpoint: .stops, otherBase: false)
+        
+        do{
+            guard let stopUrl = URL(string: "\(BASE_URL)/stops/\(stopID)?apikey=\(apiKey)") else {
+                throw StopError.invalidURL
+            }
+            
+            guard let estimateUrl = URL(string: "\(BASE_URL)/stops/\(stopID)/estimates?apikey=\(apiKey)") else{
+                throw StopError.invalidURL
+            }
+            
+            var stopRequest = makeURLRequest(url: stopUrl)
+            var estimateRequest = makeURLRequest(url: estimateUrl)
+            
+            // API Call for stop
+            let (stopData, stopResponse) = try await URLSession.shared.data(for: stopRequest)
+            guard (stopResponse as? HTTPURLResponse)?.statusCode == 200 else {
+                throw StopError.serverError
+            }
+            guard let stop = try? JSONDecoder().decode(Stops.self, from: stopData) else { throw StopError.invalidData}
+            
+            // API Call for stop estimate
+            let (estimateData, estimateResponse) = try await URLSession.shared.data(for: estimateRequest)
+            guard (estimateResponse as? HTTPURLResponse)?.statusCode == 200 else{
+                throw StopError.serverError
+            }
+            guard let estimate = try? JSONDecoder().decode([StopEstimates].self, from: estimateData) else { throw EstimateError.invalidData }
+            
+            let saved = self.savedStops.contains{ key, value in
+                return key == stop.StopNo
+            }
+            if saved{
+                // Just update estimates
+                self.savedStops[stop.StopNo]?.Schedule = estimate
+                print("Updated Estimates for \(stop.StopNo)")
+            }
+            else{
+                // Add to savedStops
+                self.savedStops[stop.StopNo] = SavedStops(BusStop: stop, Schedule: estimate)
+                print("Added Stop \(stop.Name)")
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
+    }
+    
     func getStopEstimates(){
-        for stop in self.stopsList{
-            fetchStopAndEstimate(stopID: String(stop.StopNo))
+        Task{
+            for stop in self.stopsList{
+                //            fetchStopAndEstimate(stopID: String(stop.StopNo))
+                try await fetchStopAndEstimateAsync(stopID: String(stop.StopNo))
+            }
         }
     }
     
@@ -240,5 +290,15 @@ class StopsViewModel: ObservableObject{
                 print(String(describing: estimateError))
             }
         }
+    }
+}
+
+extension StopsViewModel{
+    func makeURLRequest(url: URL) -> URLRequest{
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        return request
     }
 }

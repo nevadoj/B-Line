@@ -56,6 +56,7 @@
 		01F0C9A12AA5373700CCEF2B /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A02AA5373600CCEF2B /* AuthButton.swift */; };
 		01F0C9A32AA989E000CCEF2B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A22AA989E000CCEF2B /* UserManager.swift */; };
 		01F0C9A52AAD95A100CCEF2B /* StopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A42AAD95A100CCEF2B /* StopError.swift */; };
+		01F0C9A72AAE7C2600CCEF2B /* EstimateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A62AAE7C2600CCEF2B /* EstimateError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		01F0C9A02AA5373600CCEF2B /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		01F0C9A22AA989E000CCEF2B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		01F0C9A42AAD95A100CCEF2B /* StopError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopError.swift; sourceTree = "<group>"; };
+		01F0C9A62AAE7C2600CCEF2B /* EstimateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				0149373429F7BD5300AF51F4 /* SavedStops.swift */,
 				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
 				01F0C9A42AAD95A100CCEF2B /* StopError.swift */,
+				01F0C9A62AAE7C2600CCEF2B /* EstimateError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				018F7E0D29A45D48005D0E44 /* StopsViewModel.swift in Sources */,
 				01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */,
 				018F7E0F29A46329005D0E44 /* LocationSearchViewModel.swift in Sources */,
+				01F0C9A72AAE7C2600CCEF2B /* EstimateError.swift in Sources */,
 				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				01F0C99D2AA435BF00CCEF2B /* AuthView.swift in Sources */,
