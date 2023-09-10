@@ -48,20 +48,9 @@ struct AddStopView: View {
                 if(submit){
                     withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8)){
                         HStack {
-//                            PrimaryButton(imageName: "xmark")
-//                                .padding()
-//                                .onTapGesture {
-//                                    stopID = ""
-//                                }
-//                            PrimaryButton(imageName: "checkmark")
-//                                .padding()
-//                                .onTapGesture {
-//                                    // add to stops database
-//                                    dismiss()
-//                                }
                             Button(){
                                 // add to stops database
-                                viewModel.addStop(stopID: stopID)
+                                viewModel.addStopTask(stopID: stopID)
                                 dismiss()
                             } label: {
                                 Text("Add")

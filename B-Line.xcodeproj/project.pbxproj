@@ -15,7 +15,6 @@
 		017ADF5D2998323100A4537E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5C2998323100A4537E /* Assets.xcassets */; };
 		017ADF602998323100A4537E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5F2998323100A4537E /* Preview Assets.xcassets */; };
 		017ADF702998335100A4537E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF6F2998335100A4537E /* HomeView.swift */; };
-		017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF71299833F700A4537E /* MapViewRepresentable.swift */; };
 		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
 		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
 		018F7DF929A32A1F005D0E44 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DF829A32A1F005D0E44 /* Stops.swift */; };
@@ -56,6 +55,7 @@
 		01F0C99F2AA51F5B00CCEF2B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */; };
 		01F0C9A12AA5373700CCEF2B /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A02AA5373600CCEF2B /* AuthButton.swift */; };
 		01F0C9A32AA989E000CCEF2B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A22AA989E000CCEF2B /* UserManager.swift */; };
+		01F0C9A52AAD95A100CCEF2B /* StopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0C9A42AAD95A100CCEF2B /* StopError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,6 @@
 		017ADF5C2998323100A4537E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017ADF5F2998323100A4537E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		017ADF6F2998335100A4537E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		017ADF71299833F700A4537E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		018F7DF829A32A1F005D0E44 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
@@ -104,6 +103,7 @@
 		01F0C99E2AA51F5B00CCEF2B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		01F0C9A02AA5373600CCEF2B /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		01F0C9A22AA989E000CCEF2B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		01F0C9A42AAD95A100CCEF2B /* StopError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +143,7 @@
 		017ADF572998323000A4537E /* B-Line */ = {
 			isa = PBXGroup;
 			children = (
-				018F7DFA29A330DB005D0E44 /* APIClient */,
+				018F7DFA29A330DB005D0E44 /* API */,
 				01E3FBC3299C5CEF0062E4F2 /* Info.plist */,
 				017ADF66299832E000A4537E /* App */,
 				017ADF6C299832F600A4537E /* Core */,
@@ -180,6 +180,7 @@
 			children = (
 				0149373429F7BD5300AF51F4 /* SavedStops.swift */,
 				018F7E0129A35D61005D0E44 /* APIResponseTypes */,
+				01F0C9A42AAD95A100CCEF2B /* StopError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				017ADF6F2998335100A4537E /* HomeView.swift */,
-				017ADF71299833F700A4537E /* MapViewRepresentable.swift */,
 				01E3FBBD299C4EB30062E4F2 /* MapView.swift */,
 				011C546A29A8236C0015AE2F /* MapViewMain.swift */,
 				01F0C99C2AA435BE00CCEF2B /* AuthView.swift */,
@@ -305,14 +305,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		018F7DFA29A330DB005D0E44 /* APIClient */ = {
+		018F7DFA29A330DB005D0E44 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				018F7DFB29A330F3005D0E44 /* TLService.swift */,
 				018F7DFD29A330FD005D0E44 /* TLRequest.swift */,
 				018F7DFF29A33103005D0E44 /* TLEndpoint.swift */,
 			);
-			path = APIClient;
+			path = API;
 			sourceTree = "<group>";
 		};
 		018F7E0129A35D61005D0E44 /* APIResponseTypes */ = {
@@ -423,6 +423,7 @@
 				018F7E0B29A35DFE005D0E44 /* Stats.swift in Sources */,
 				01F0C9A32AA989E000CCEF2B /* UserManager.swift in Sources */,
 				017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */,
+				01F0C9A52AAD95A100CCEF2B /* StopError.swift in Sources */,
 				01E3FBC2299C53660062E4F2 /* Utils.swift in Sources */,
 				01A97D902A9D68C100E8C9A1 /* AnnotationView.swift in Sources */,
 				018F7E0529A35DD8005D0E44 /* StopEstimates.swift in Sources */,
@@ -448,7 +449,6 @@
 				01E3FBB9299C4E560062E4F2 /* StopsView.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				01F0C99D2AA435BF00CCEF2B /* AuthView.swift in Sources */,
-				017ADF72299833F700A4537E /* MapViewRepresentable.swift in Sources */,
 				01A97D862A958D7A00E8C9A1 /* UserLocation.swift in Sources */,
 				01F0C9992AA28AD600CCEF2B /* AuthenticationManager.swift in Sources */,
 				01D9015129A5EED400BBB103 /* PrimaryButton.swift in Sources */,

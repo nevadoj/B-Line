@@ -24,6 +24,8 @@ class StopsViewModel: ObservableObject{
     @Published var discoverStopEstimates = [StopEstimates]()
     @Published var nearbyStops = [SavedStops]()
     
+    let BASE_URL = "https://api.translink.ca/rttiapi/v1"
+    let BASE_URL2 = "https://api.translink.ca/rttiapi"
 //    func sampleFetch(){
 //        let request = TLRequest(endpoint: .v1, otherBase: false)
 //
@@ -37,6 +39,7 @@ class StopsViewModel: ObservableObject{
 //        }
 //    }
     
+    // TODO: Update with URLSession async & make main actor
     func addStop(stopID: String){
         let db = Firestore.firestore()
         let request = TLRequest(endpoint: .stops, otherBase: false)
@@ -66,6 +69,45 @@ class StopsViewModel: ObservableObject{
                 print(String(describing: error))
             }
             
+        }
+    }
+    
+    @MainActor
+    func addStopAsync(stopID: String) async throws{
+        let db = Firestore.firestore()
+        
+        var userID: String = ""
+        do{
+            let authData = try AuthenticationManager.shared.getAuthenticatedUser()
+            userID = authData.uid
+            
+            guard let url = URL(string: "\(BASE_URL)/stops/\(stopID)?apikey=\(apiKey)") else { throw StopError.invalidURL }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw StopError.serverError}
+            guard let stopData = try? JSONDecoder().decode(Stops.self, from: data) else { throw StopError.invalidData }
+            
+            db.collection("users").document(userID).collection("stops").addDocument(data: ["StopNo":stopData.StopNo, "Name":stopData.Name, "BayNo":stopData.BayNo, "City":stopData.City, "OnStreet":stopData.OnStreet, "AtStreet":stopData.AtStreet, "Latitude":stopData.Latitude, "Longitude":stopData.Longitude, "WheelchairAccess":stopData.WheelchairAccess, "Distance":stopData.Distance, "Routes":stopData.Routes]){ error in
+                if error == nil{
+                    self.getStops(addNew: true)
+                }
+                else{
+                    print(String(describing: error))
+                    return
+                }
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
+    }
+    
+    func addStopTask(stopID: String){
+        Task{
+            try await addStopAsync(stopID: stopID)
         }
     }
     
@@ -113,6 +155,7 @@ class StopsViewModel: ObservableObject{
     
     // TODO: RemoveStops -- on signout of account, remove saved stops in list -> incase another user signs in 
     
+    // TODO: Update with URLSession async & make main actor
     func fetchStopAndEstimate(stopID: String){
         let request = TLRequest(endpoint: .stops, otherBase: false)
         
@@ -153,6 +196,8 @@ class StopsViewModel: ObservableObject{
         }
     }
     
+    
+    // TODO: Update with URLSession async & make main actor
     func getNearbyStops(lat: String, lon: String){
         let request = TLRequest(endpoint: .v1, otherBase: false)
         self.nearbyStops.removeAll()
@@ -173,16 +218,14 @@ class StopsViewModel: ObservableObject{
                         }
                     }
                 }
-//                DispatchQueue.main.async {
-//                    self.nearbyStops.removeAll()
-//                    self.nearbyStops = model
-//                }
             case .failure(let error):
                 print("Failed to get nearby stops:" + String(describing: error))
             }
         }
     }
     
+    
+    // TODO: Update with URLSession async & make main actor
     func fetchDiscoverEstimate(stopID: String){
         let request = TLRequest(endpoint: .stops, otherBase: false)
         
@@ -199,4 +242,3 @@ class StopsViewModel: ObservableObject{
         }
     }
 }
-

@@ -120,13 +120,3 @@ final class TLRequest{
 }
 
 // https://api.translink.ca/rttiapi/v1/stops/55612?apikey=[APIKey]
-
-extension TLRequest {
-    static let stopsRequest = TLRequest(
-        endpoint: .stops,
-        pathComponents: ["58946"],
-        queryParameters: [
-            URLQueryItem(name: "apikey", value: "apikey")
-        ],
-        otherBase: false)
-}

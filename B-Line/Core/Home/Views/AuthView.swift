@@ -14,7 +14,6 @@ struct AuthView: View {
     @Binding var showStops: Bool
     
     
-    // TODO: Separate views for signing in / creating account (by different buttons)
     init(showStops: Binding<Bool>){
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = UIColor.clear
@@ -25,9 +24,7 @@ struct AuthView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         _showStops = showStops
     }
-    
-    
-    
+
     var body: some View {
         NavigationStack{
             ZStack{
