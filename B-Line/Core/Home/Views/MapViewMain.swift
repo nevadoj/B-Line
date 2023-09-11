@@ -17,33 +17,33 @@ struct MapViewMain: View {
     @State private var selectedStop: SavedStops?
     var body: some View {
         ZStack{
-            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
-                showsUserLocation: true,
-                annotationItems: stopViewModel.nearbyStops,
-                annotationContent: { stop in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
-                        AnnotationView()
-                            .shadow(radius: 10)
-                            .onTapGesture {
-                                selectedStop = stop
-                                print(stop)
-                            }
-                    }
-                }
-            )
-            
-            // No published view errors
 //            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
 //                showsUserLocation: true,
 //                annotationItems: stopViewModel.nearbyStops,
 //                annotationContent: { stop in
-//                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
-//            })
-//                .ignoresSafeArea()
+//                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
+//                        AnnotationView()
+//                            .shadow(radius: 10)
+//                            .onTapGesture {
+//                                selectedStop = stop
+//                                print(stop)
+//                            }
+//                    }
+//                }
+//            )
+            
+            // No published view errors
+            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
+                showsUserLocation: true,
+                annotationItems: stopViewModel.nearbyStops,
+                annotationContent: { stop in
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+            })
+                .ignoresSafeArea()
         }
         .onAppear{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                stopViewModel.getNearbyStopsTask(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
+                stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
                     .latitude) : String(format: "%.6f", locationViewModel.searchRegion.center.latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.longitude) : String(format: "%.6f", locationViewModel.searchRegion.center.longitude))
             }
         }

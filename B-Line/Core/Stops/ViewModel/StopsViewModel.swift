@@ -36,7 +36,6 @@ class StopsViewModel: ObservableObject{
 //        }
 //    }
     
-    // TODO: Update with URLSession async & make main actor
     func addStop(stopID: String){
         let db = Firestore.firestore()
         let request = TLRequest(endpoint: .stops, otherBase: false)
@@ -244,7 +243,6 @@ class StopsViewModel: ObservableObject{
     }
     
     
-    // TODO: Update with URLSession async & make main actor
     func getNearbyStops(lat: String, lon: String){
         let request = TLRequest(endpoint: .v1, otherBase: false)
         self.nearbyStops.removeAll()
@@ -271,9 +269,12 @@ class StopsViewModel: ObservableObject{
         }
     }
     
-    @MainActor // works but map is not interactable while markers are loading
+    // works but map is not interactable while markers are loading
+    @MainActor
     func getNearbyStopsAsync(lat: String, lon: String) async throws {
         self.nearbyStops.removeAll()
+        
+        var loadStops = [SavedStops]()
         do{
             guard let stopUrl = URL(string: "\(BASE_URL)/stops?apikey=\(apiKey)&lat=\(lat)&long=\(lon)") else { throw StopError.invalidURL }
             
@@ -297,8 +298,9 @@ class StopsViewModel: ObservableObject{
                 }
                 guard let estimate = try? JSONDecoder().decode([StopEstimates].self, from: estimateData) else { throw EstimateError.invalidData }
                 
-                self.nearbyStops.append(SavedStops(BusStop: stop, Schedule: estimate))
+                loadStops.append(SavedStops(BusStop: stop, Schedule: estimate))
             }
+            self.nearbyStops = loadStops
         }
         catch{
             print("Error: \(error.localizedDescription)")
@@ -311,7 +313,6 @@ class StopsViewModel: ObservableObject{
         }
     }
     
-    // TODO: Update with URLSession async & make main actor
     func fetchDiscoverEstimate(stopID: String){
         let request = TLRequest(endpoint: .stops, otherBase: false)
         

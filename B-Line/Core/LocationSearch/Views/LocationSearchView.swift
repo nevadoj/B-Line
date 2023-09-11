@@ -31,7 +31,7 @@ struct LocationSearchView: View {
             if(!defaultLocation){
                 Button{
                     defaultLocation.toggle()
-                    stopViewModel.getNearbyStopsTask(lat: String(format: "%.6f", userLocationViewModel.region.center
+                    stopViewModel.getNearbyStops(lat: String(format: "%.6f", userLocationViewModel.region.center
                         .latitude), lon: String(format: "%.6f", userLocationViewModel.region.center
                         .longitude))
                 } label: {
