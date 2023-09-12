@@ -28,7 +28,7 @@ extension Color {
 extension String{
     func dateFromString(inputStr: String) -> Date{
         let dateFormatter = DateFormatter()
-        if(inputStr.count > 5){
+        if(inputStr.count > 7){
             dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
         }
         else{
@@ -41,7 +41,7 @@ extension String{
     func timeFromString(inputStr: String) -> String{
         let dateFormatter = DateFormatter()
         
-        if(inputStr.count > 5){
+        if(inputStr.count > 7){
             dateFormatter.dateFormat = "h:mma yyyy-MM-dd"
         }
         else{
