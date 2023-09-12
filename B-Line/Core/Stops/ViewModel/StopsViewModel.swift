@@ -274,7 +274,7 @@ class StopsViewModel: ObservableObject{
     func getNearbyStopsAsync(lat: String, lon: String) async throws {
         self.nearbyStops.removeAll()
         
-        var loadStops = [SavedStops]()
+//        var loadStops = [SavedStops]()
         do{
             guard let stopUrl = URL(string: "\(BASE_URL)/stops?apikey=\(apiKey)&lat=\(lat)&long=\(lon)") else { throw StopError.invalidURL }
             
@@ -298,9 +298,9 @@ class StopsViewModel: ObservableObject{
                 }
                 guard let estimate = try? JSONDecoder().decode([StopEstimates].self, from: estimateData) else { throw EstimateError.invalidData }
                 
-                loadStops.append(SavedStops(BusStop: stop, Schedule: estimate))
+                self.nearbyStops.append(SavedStops(BusStop: stop, Schedule: estimate))
             }
-            self.nearbyStops = loadStops
+//            self.nearbyStops = loadStops
         }
         catch{
             print("Error: \(error.localizedDescription)")

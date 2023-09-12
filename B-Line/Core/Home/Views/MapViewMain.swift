@@ -15,6 +15,8 @@ struct MapViewMain: View {
     
     @Binding var defaultLocation: Bool
     @State private var selectedStop: SavedStops?
+    @State private var region = MKCoordinateRegion(center: mapDefaults.defaultLocation, span: mapDefaults.defaultSpan)
+    
     var body: some View {
         ZStack{
 //            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
@@ -33,19 +35,36 @@ struct MapViewMain: View {
 //            )
             
             // No published view errors
-            Map(coordinateRegion: defaultLocation ? userLocationViewModel.region.getBinding()! : locationViewModel.searchRegion.getBinding()!,
+            Map(coordinateRegion: $region,
                 showsUserLocation: true,
                 annotationItems: stopViewModel.nearbyStops,
                 annotationContent: { stop in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+                withAnimation(.easeOut(duration: 0.15)){
+                    MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+                }
             })
-                .ignoresSafeArea()
-        }
-        .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                stopViewModel.getNearbyStops(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
-                    .latitude) : String(format: "%.6f", locationViewModel.searchRegion.center.latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.longitude) : String(format: "%.6f", locationViewModel.searchRegion.center.longitude))
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                    DispatchQueue.main.async {
+                        region = defaultLocation ? userLocationViewModel.region : locationViewModel.searchRegion
+                    }
+                    stopViewModel.getNearbyStopsTask(lat: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center
+                        .latitude) : String(format: "%.6f", locationViewModel.searchRegion.center.latitude), lon: defaultLocation ? String(format: "%.6f", userLocationViewModel.region.center.longitude) : String(format: "%.6f", locationViewModel.searchRegion.center.longitude))
+                }
             }
+            .onChange(of: defaultLocation){ loc in
+                if(loc){
+                    DispatchQueue.main.async {
+                        region = userLocationViewModel.region
+                    }
+                }
+                else{
+                    DispatchQueue.main.async {
+                        region = locationViewModel.searchRegion
+                    }
+                }
+            }
+            .ignoresSafeArea()
         }
         .sheet(item: $selectedStop){ stop in
             NavigationView{
@@ -56,8 +75,12 @@ struct MapViewMain: View {
     }
 }
 
-//struct MapViewMain_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MapViewMain(defaultLocation: .constant(true))
-//    }
-//}
+struct MapViewMain_Previews: PreviewProvider {
+    static var previews: some View {
+        MapViewMain(defaultLocation: .constant(true))
+            .environmentObject(LocationSearchViewModel())
+            .environmentObject(StopsViewModel())
+            .environmentObject(LocationViewModel())
+        
+    }
+}
