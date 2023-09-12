@@ -14,7 +14,7 @@ struct LocationSearchView: View {
     @Binding var showNavBar: Bool
     
     @EnvironmentObject var stopViewModel: StopsViewModel
-    @EnvironmentObject var userLocationViewModel: LocationViewModel
+    @EnvironmentObject var locationViewModel: LocationViewModel
     
     var body: some View {
         VStack {
@@ -29,10 +29,11 @@ struct LocationSearchView: View {
             .padding(.vertical)
             
             if(!defaultLocation){
-                Button{
+                Button{ // TODO: Refactor this LocationSearchViewModel for reference
                     defaultLocation.toggle()
-                    stopViewModel.getNearbyStopsTask(lat: String(format: "%.6f", userLocationViewModel.region.center
-                        .latitude), lon: String(format: "%.6f", userLocationViewModel.region.center
+                    locationViewModel.resetLocation()
+                    stopViewModel.getNearbyStopsTask(lat: String(format: "%.6f", locationViewModel.region.center
+                        .latitude), lon: String(format: "%.6f", locationViewModel.region.center
                         .longitude))
                 } label: {
                     PrimaryButton(imageName: "location.fill")

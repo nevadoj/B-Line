@@ -20,15 +20,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct B_LineApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var locationViewModel = LocationSearchViewModel()
     @StateObject var stopViewModel = StopsViewModel()
-    @StateObject var userLocationViewModel = LocationViewModel()
+    @StateObject var locationViewModel = LocationViewModel()
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(locationViewModel)
                 .environmentObject(stopViewModel)
-                .environmentObject(userLocationViewModel)
+                .environmentObject(locationViewModel)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationSearchMenuView: View {
     
-    @EnvironmentObject var viewModel: LocationSearchViewModel
+    @EnvironmentObject var viewModel: LocationViewModel
     @Binding var showSearchMenu: Bool
     @Binding var defaultLocation: Bool
     @Binding var showNavBar: Bool
@@ -58,10 +58,9 @@ struct LocationSearchMenuView: View {
                                             
                                             
                                             if(defaultLocation){
-                                                defaultLocation.toggle() // need a button to re-center location which will un-toggle this
+                                                defaultLocation.toggle()
                                             }
                                         }
-                                    // on click of result, toggle back to map view and query translink api
                                 }
                             }
                         }
@@ -74,9 +73,8 @@ struct LocationSearchMenuView: View {
 }
 
 struct LocationSearchMenuView_Previews: PreviewProvider {
-    static let viewModel = LocationSearchViewModel()
     static var previews: some View {
         LocationSearchMenuView(showSearchMenu: .constant(true), defaultLocation: .constant(true), showNavBar: .constant(true))
-            .environmentObject(viewModel)
+            .environmentObject(LocationViewModel())
     }
 }

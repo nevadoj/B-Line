@@ -16,7 +16,7 @@
 		017ADF5D2998323100A4537E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5C2998323100A4537E /* Assets.xcassets */; };
 		017ADF602998323100A4537E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5F2998323100A4537E /* Preview Assets.xcassets */; };
 		017ADF702998335100A4537E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF6F2998335100A4537E /* HomeView.swift */; };
-		017ADF742998352B00A4537E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManager.swift */; };
+		017ADF742998352B00A4537E /* LocationManagerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF732998352B00A4537E /* LocationManagerOld.swift */; };
 		017ADF7A29987CB700A4537E /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF7929987CB700A4537E /* LocationSearchView.swift */; };
 		018F7DF929A32A1F005D0E44 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DF829A32A1F005D0E44 /* Stops.swift */; };
 		018F7DFC29A330F3005D0E44 /* TLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7DFB29A330F3005D0E44 /* TLService.swift */; };
@@ -29,7 +29,7 @@
 		018F7E0D29A45D48005D0E44 /* StopsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0C29A45D48005D0E44 /* StopsViewModel.swift */; };
 		018F7E0F29A46329005D0E44 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F7E0E29A46329005D0E44 /* LocationSearchViewModel.swift */; };
 		01A97D842A94745500E8C9A1 /* TLApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D832A94745500E8C9A1 /* TLApi.swift */; };
-		01A97D862A958D7A00E8C9A1 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D852A958D7A00E8C9A1 /* UserLocation.swift */; };
+		01A97D862A958D7A00E8C9A1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D852A958D7A00E8C9A1 /* LocationManager.swift */; };
 		01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */; };
 		01A97D8C2A9AC76400E8C9A1 /* LocationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */; };
 		01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */; };
@@ -71,7 +71,7 @@
 		017ADF5C2998323100A4537E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017ADF5F2998323100A4537E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		017ADF6F2998335100A4537E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		017ADF732998352B00A4537E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		017ADF732998352B00A4537E /* LocationManagerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerOld.swift; sourceTree = "<group>"; };
 		017ADF7929987CB700A4537E /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		018F7DF829A32A1F005D0E44 /* Stops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
 		018F7DFB29A330F3005D0E44 /* TLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLService.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		018F7E0C29A45D48005D0E44 /* StopsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsViewModel.swift; sourceTree = "<group>"; };
 		018F7E0E29A46329005D0E44 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		01A97D832A94745500E8C9A1 /* TLApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLApi.swift; sourceTree = "<group>"; };
-		01A97D852A958D7A00E8C9A1 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		01A97D852A958D7A00E8C9A1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		01A97D872A96CEF900E8C9A1 /* DetailedStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStopView.swift; sourceTree = "<group>"; };
 		01A97D8B2A9AC76400E8C9A1 /* LocationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationText.swift; sourceTree = "<group>"; };
 		01A97D8D2A9ADBB500E8C9A1 /* MinutesDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesDisplay.swift; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 		017ADF6A299832F300A4537E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				017ADF732998352B00A4537E /* LocationManager.swift */,
-				01A97D852A958D7A00E8C9A1 /* UserLocation.swift */,
+				017ADF732998352B00A4537E /* LocationManagerOld.swift */,
+				01A97D852A958D7A00E8C9A1 /* LocationManager.swift */,
 				01F0C9982AA28AD600CCEF2B /* AuthenticationManager.swift */,
 				01F0C9A22AA989E000CCEF2B /* UserManager.swift */,
 			);
@@ -448,7 +448,7 @@
 				01A97D922A9D70E300E8C9A1 /* DiscoverStopView.swift in Sources */,
 				01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */,
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
-				017ADF742998352B00A4537E /* LocationManager.swift in Sources */,
+				017ADF742998352B00A4537E /* LocationManagerOld.swift in Sources */,
 				018F7E0D29A45D48005D0E44 /* StopsViewModel.swift in Sources */,
 				01A97D8E2A9ADBB500E8C9A1 /* MinutesDisplay.swift in Sources */,
 				018F7E0F29A46329005D0E44 /* LocationSearchViewModel.swift in Sources */,
@@ -457,7 +457,7 @@
 				015774612AAFFC2B00319526 /* sample.swift in Sources */,
 				017ADF592998323000A4537E /* B_LineApp.swift in Sources */,
 				01F0C99D2AA435BF00CCEF2B /* AuthView.swift in Sources */,
-				01A97D862A958D7A00E8C9A1 /* UserLocation.swift in Sources */,
+				01A97D862A958D7A00E8C9A1 /* LocationManager.swift in Sources */,
 				01F0C9992AA28AD600CCEF2B /* AuthenticationManager.swift in Sources */,
 				01D9015129A5EED400BBB103 /* PrimaryButton.swift in Sources */,
 				01A97D842A94745500E8C9A1 /* TLApi.swift in Sources */,
