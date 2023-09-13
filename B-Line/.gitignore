@@ -7,3 +7,7 @@ TLApi.swift
 MapViewRepresentable.swift
 LocationManagerOld.swift
 API/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
