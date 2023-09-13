@@ -11,6 +11,7 @@
 		0149372F29F75BF600AF51F4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0149372E29F75BF600AF51F4 /* .gitignore */; };
 		0149373529F7BD5300AF51F4 /* SavedStops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149373429F7BD5300AF51F4 /* SavedStops.swift */; };
 		015774612AAFFC2B00319526 /* sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015774602AAFFC2B00319526 /* sample.swift */; };
+		015774632AB2410000319526 /* OldAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015774622AB2410000319526 /* OldAPI.swift */; };
 		017A110E29AC9CEB00CE02D8 /* StopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */; };
 		017ADF592998323000A4537E /* B_LineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017ADF582998323000A4537E /* B_LineApp.swift */; };
 		017ADF5D2998323100A4537E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017ADF5C2998323100A4537E /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		0149372E29F75BF600AF51F4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0149373429F7BD5300AF51F4 /* SavedStops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStops.swift; sourceTree = "<group>"; };
 		015774602AAFFC2B00319526 /* sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sample.swift; sourceTree = "<group>"; };
+		015774622AB2410000319526 /* OldAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAPI.swift; sourceTree = "<group>"; };
 		017A110D29AC9CEB00CE02D8 /* StopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewCell.swift; sourceTree = "<group>"; };
 		017ADF552998323000A4537E /* B-Line.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "B-Line.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017ADF582998323000A4537E /* B_LineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_LineApp.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				018F7DFB29A330F3005D0E44 /* TLService.swift */,
 				018F7DFD29A330FD005D0E44 /* TLRequest.swift */,
 				018F7DFF29A33103005D0E44 /* TLEndpoint.swift */,
+				015774622AB2410000319526 /* OldAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				01F0C99B2AA4239600CCEF2B /* SavedStopsView.swift in Sources */,
 				01D9014F29A5E53600BBB103 /* LocationSearchMenuView.swift in Sources */,
 				01A97D922A9D70E300E8C9A1 /* DiscoverStopView.swift in Sources */,
+				015774632AB2410000319526 /* OldAPI.swift in Sources */,
 				01A97D882A96CEF900E8C9A1 /* DetailedStopView.swift in Sources */,
 				018F7E0929A35DF9005D0E44 /* Routes.swift in Sources */,
 				017ADF742998352B00A4537E /* LocationManagerOld.swift in Sources */,

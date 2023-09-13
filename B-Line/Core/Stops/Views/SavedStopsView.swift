@@ -29,6 +29,7 @@ struct SavedStopsView: View {
                 ZStack{
                     VStack(alignment: .leading){
                         ForEach(stopViewModel.savedStops.sorted(by: {$0.key < $1.key}), id: \.key){ key, stop in
+                            // add Section() to distinguish by stop # 
                             ForEach(stop.Schedule, id: \.self){ bus in
                                 StopViewCell(busNumber: bus.RouteNo, address: stop.BusStop.Name.capitalized, stopNumber: stop.BusStop.StopNo, arrivalTime: bus.Schedules.first?.ExpectedCountdown ?? -99)
                                     .padding(10)
@@ -80,7 +81,6 @@ struct SavedStopsView: View {
             .background(Color("BPrimary"))
         }
         .onAppear{
-//            stopViewModel.getStopEstimates()
             stopViewModel.getStops(addNew: false)
             stopViewModel.getStopEstimates()
         }

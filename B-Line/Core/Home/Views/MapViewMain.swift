@@ -27,30 +27,30 @@ struct MapViewMain: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: region,
-                showsUserLocation: true,
-                annotationItems: stopViewModel.nearbyStops,
-                annotationContent: { stop in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
-                        AnnotationView()
-                            .shadow(radius: 10)
-                            .onTapGesture {
-                                selectedStop = stop
-                                print(stop)
-                            }
-                    }
-                }
-            )
-            
-            // No published view errors
 //            Map(coordinateRegion: region,
 //                showsUserLocation: true,
 //                annotationItems: stopViewModel.nearbyStops,
 //                annotationContent: { stop in
-//                withAnimation(.easeOut(duration: 0.15)){
-//                    MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+//                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude)){
+//                        AnnotationView()
+//                            .shadow(radius: 10)
+//                            .onTapGesture {
+//                                selectedStop = stop
+//                                print(stop)
+//                            }
+//                    }
 //                }
-//            })
+//            )
+            
+            // No published view errors
+            Map(coordinateRegion: region,
+                showsUserLocation: true,
+                annotationItems: stopViewModel.nearbyStops,
+                annotationContent: { stop in
+                withAnimation(.easeOut(duration: 0.15)){
+                    MapMarker(coordinate: CLLocationCoordinate2D(latitude: stop.BusStop.Latitude, longitude: stop.BusStop.Longitude), tint: .blue)
+                }
+            })
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                     stopViewModel.getNearbyStopsTask(lat: String(format: "%.6f", locationViewModel.region.center.latitude), lon: String(format: "%.6f", locationViewModel.region.center.longitude))
