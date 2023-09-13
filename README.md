@@ -28,7 +28,7 @@
 
 [AnimatedTabBar](https://github.com/exyte/AnimatedTabBar)
 
-[TransLink API Key](https://developer.translink.ca/)
+[TransLink API](https://developer.translink.ca/)
 
 ## Disclaimer
 Some of the data used in this product or service is provided by permission of TransLink. TransLink assumes no responsibility for the accuracy or currency of the Data used in this product or service.
